@@ -1,33 +1,27 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
+import { buildWebpackConfig } from './config/build/buildWebpackConfig';
+import { IBuildOptions, IBuildPaths, IEnvOptions } from './config/build/types';
 
-const config: webpack.Configuration = {
-    mode: 'production',
-    entry: path.resolve(__dirname, 'src', 'index.ts'),
-    output: {
-        filename: '[name].[contenthash].js',
-        path: path.resolve(__dirname, 'build'),
-        clean: true
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'public', 'index.html')
-        }),
-        new webpack.ProgressPlugin(),
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-        ],
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
-    },
+export default function(env: IEnvOptions): webpack.Configuration {
+    const mode = env.mode || 'development';
+    const isDev = mode === 'development';
+    const port = env.port || 3000;
+    const paths: IBuildPaths = {
+        entry: path.resolve(__dirname, 'src', 'index.ts'),
+        output: path.resolve(__dirname, 'build'),
+        moduleResolve: path.resolve(__dirname, 'src'),
+        template: path.resolve(__dirname, 'public', 'index.html'),
+        bundleFileName: '[name].[contenthash].js',
+    };
+
+    const buildOptions: IBuildOptions = {
+        mode,
+        isDev,
+        paths,
+        port,
+    };
+
+    return buildWebpackConfig(buildOptions);
 };
-
-export default config;
