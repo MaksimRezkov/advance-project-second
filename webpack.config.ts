@@ -22,6 +22,7 @@ export default function(env: IEnvOptions): webpack.Configuration {
         paths,
         port,
     };
+    console.log('build opts', buildOptions);
 
     return buildWebpackConfig(buildOptions);
 };
