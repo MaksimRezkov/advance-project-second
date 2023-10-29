@@ -1,0 +1,12 @@
+.d-flex {
+  display: flex;
+
+  &-all-center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-j-between {
+    justify-content: space-between;
+  }
+}
