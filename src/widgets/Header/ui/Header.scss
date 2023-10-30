@@ -1,0 +1,27 @@
+.header-app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--height-header-app);
+  background-color: var(--bg-color-content);
+  border-bottom: 1px solid var(--color-header-border);
+  z-index: 1;
+
+  &_content {
+      width: var(--width-content);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--padding-s);
+      margin-left: var(--ml-content);
+  }
+}
+
+.header-content_left {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}

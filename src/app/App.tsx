@@ -4,6 +4,8 @@ import { HomeLazy } from "../pages/Home";
 import { AboutLazy } from "../pages/About";
 import { IClassNamesParams, classNames } from "../shared/utils/classNames";
 import { useThemeContext } from "./lib/context/useThemeContext";
+import { MainLayout } from "../layouts/MainLayout";
+import "./styles/index.scss";
 
 export const App: FC = () => {
   const { themeValue } = useThemeContext();
@@ -14,12 +16,14 @@ export const App: FC = () => {
 
   return (
     <div className={classNames(appClassNames)}>
-      <Suspense fallback={"Загрузка"}>
-        <Routes>
-          <Route path="/" element={<HomeLazy/>}></Route>
-          <Route path="/about" element={<AboutLazy/>}></Route>
-        </Routes>
-      </Suspense>
+      <MainLayout>
+        <Suspense fallback={"Загрузка"}>
+          <Routes>
+            <Route path="/" element={<HomeLazy/>}></Route>
+            <Route path="/about" element={<AboutLazy/>}></Route>
+          </Routes>
+        </Suspense>
+      </MainLayout>
     </div>
   );
 }

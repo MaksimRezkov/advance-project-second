@@ -1,0 +1,13 @@
+.button_link {
+  padding: 6px 8px;
+  border: 1px solid var(--color-main);
+  border-radius: 2px;
+  color: var(--color-main);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+  &:hover {
+      background-color: var(--color-main);
+      color: var(--color-main-revert);
+  }
+}

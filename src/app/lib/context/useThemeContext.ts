@@ -13,7 +13,7 @@ export function useThemeContext(): IUseThemeResult {
 
   /** Ссылка на функцию, использующую обновление состояния и вызываемую где-либо в приложении */
   const toggleThemeValue = () => {
-    const newThemeValue: ThemeValueType = themeValue === 'LIGHT' ? 'DARK' : 'LIGHT';
+    const newThemeValue: ThemeValueType = themeValue === 'light' ? 'dark' : 'light';
     setThemeValue(newThemeValue);
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newThemeValue);
   };

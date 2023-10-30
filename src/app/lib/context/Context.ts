@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 /** Создание объекта контекста для всего приложения */
 
-export type ThemeValueType = 'LIGHT' | 'DARK';
+export type ThemeValueType = 'light' | 'dark';
 
 export interface IContextValues {
   themeValue?: ThemeValueType,

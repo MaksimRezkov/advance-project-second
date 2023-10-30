@@ -1,0 +1,18 @@
+.app-layout {
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  background-color: var(--bg-color-layout);
+  color: var(--color-main);
+}
+
+.layout {
+  &_content-wrapp {
+      position: relative;
+      width: var(--width-content);
+      min-height: 100vh;
+      margin-left: var(--ml-content);
+      padding: calc( var(--height-header-app) + 10px ) var(--padding-s) var(--padding-s) var(--padding-s);
+      background-color: var(--bg-color-content);
+  }
+}

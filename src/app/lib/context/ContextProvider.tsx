@@ -2,7 +2,7 @@ import { FC, useMemo, useState } from "react";
 import { IContextValues, LOCAL_STORAGE_THEME_KEY, AppContext, ThemeValueType } from "./Context";
 
 /** Создаём исходное значение для одного из полей контекста */
-const themeValueDefault = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as ThemeValueType || 'LIGHT';
+const themeValueDefault = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as ThemeValueType || 'light';
 
 /** Провайдер с контекстом, обёртка для корневого компонента */
 export const ThemeContextProvider: FC = ({ children }) => {
