@@ -7,7 +7,7 @@ export function classNames(params: IClassNamesParams) {
   const { mainClassName, additional = [] } = params;
   let classNameResult = mainClassName;
 
-  additional.forEach((className: string) => {
+  additional.filter(Boolean).forEach((className: string) => {
     classNameResult += ` ${className}`;
   });
 

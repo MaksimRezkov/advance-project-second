@@ -9,7 +9,6 @@ export const ThemeSwitcher: FC = () => {
   return (
     <Button
       clickHandler={toggleThemeValue}
-      additionalClasses={[styleClasses.borderNone]}
     >
       TOGGLE THEME
     </Button>
