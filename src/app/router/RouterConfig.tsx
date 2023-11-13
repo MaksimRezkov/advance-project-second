@@ -1,6 +1,6 @@
 import { PathRouteProps } from "react-router-dom";
-import { HomeLazy } from "../../pages/Home";
-import { AboutLazy } from "../../pages/About";
+import { HomeLazy } from "pages/Home";
+import { AboutLazy } from "pages/About";
 
 export enum RouteNames {
   MAIN = 'main',

@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import styleClasses from "./ApInput.module.scss";
-import { classNames } from "../../utils/classNames";
+import { classNames } from "shared/utils/classNames";
 
 interface IApInputProps {
   placeholder?: string;

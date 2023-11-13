@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Header } from "../../../widgets/Header/ui/Header";
+import { Header } from "widgets/Header/ui/Header";
 import "./MainLayout.scss";
 
 export const MainLayout: FC = ({ children }) => {

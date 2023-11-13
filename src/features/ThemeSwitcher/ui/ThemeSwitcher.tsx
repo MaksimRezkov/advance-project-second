@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Button } from "../../../shared/Button/ui/Button";
-import { useThemeContext } from "../../../app/lib/context/useThemeContext";
+import { Button } from "shared/Button/ui/Button";
+import { useThemeContext } from "app/lib/context/useThemeContext";
 import styleClasses from "./ThemeSwitcher.module.scss";
 
 export const ThemeSwitcher: FC = () => {

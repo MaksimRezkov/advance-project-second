@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link, LinkProps } from "react-router-dom";
-import { classNames } from "../../utils/classNames";
+import { classNames } from "shared/utils/classNames";
 import styleClasses from "./LinkButton.module.scss";
 
 export interface ILinkButtonProps extends LinkProps {

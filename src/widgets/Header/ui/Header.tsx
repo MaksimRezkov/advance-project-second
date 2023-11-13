@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { LinkButton } from "../../../shared/LinkButton";
-import { ThemeSwitcher } from "../../../features/ThemeSwitcher";
+import { LinkButton } from "shared/LinkButton";
+import { ThemeSwitcher } from "features/ThemeSwitcher";
 import "./Header.scss";
 
 export const Header: FC = () => {

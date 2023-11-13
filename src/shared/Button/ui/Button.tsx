@@ -1,6 +1,6 @@
 import { FC, MouseEventHandler } from "react";
 import styleClasses from "./Button.module.scss";
-import { classNames, IClassNamesParams } from "../../utils/classNames";
+import { classNames, IClassNamesParams } from "shared/utils/classNames";
 
 export interface IButtonProps {
     clickHandler?: MouseEventHandler<HTMLButtonElement>;
