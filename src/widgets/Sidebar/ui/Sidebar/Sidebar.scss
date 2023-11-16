@@ -1,0 +1,26 @@
+.app-sidebar {
+  position: fixed;
+  left: 10px;
+  top: 10%;
+  height: 250px;
+  width: 25%;
+  max-width: 300px;
+  border: 1px solid var(--color-main);
+  transition: height .3s linear;
+
+  &__collapsed {
+    height: 45px;
+  }
+}
+
+.toggle-sidebar-arrow {
+  position: relative;
+  width: 45px;
+  height: 45px;
+
+  transition: transform linear .3s;
+}
+
+.rotate-toggle-sidebar {
+  transform: rotate(180deg);
+}

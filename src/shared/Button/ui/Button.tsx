@@ -3,7 +3,7 @@ import styleClasses from "./Button.module.scss";
 import { classNames, IClassNamesParams } from "shared/utils/classNames";
 
 export interface IButtonProps {
-    clickHandler?: MouseEventHandler<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
     additionalClasses?: string[];
     disabled?: boolean;
     hovered?: boolean;
@@ -11,7 +11,7 @@ export interface IButtonProps {
 
 export const Button: FC<IButtonProps> = (props) => {
 
-    const { children, additionalClasses = [], clickHandler, disabled = false, hovered = true } = props;
+    const { children, additionalClasses = [], onClick, disabled = false, hovered = true } = props;
     const classNameParams: IClassNamesParams = {
         mainClassName: styleClasses.appButton,
         additional: [...additionalClasses, hovered ? styleClasses.btnWithHover : ''],
@@ -20,7 +20,7 @@ export const Button: FC<IButtonProps> = (props) => {
     return (
         <button
             disabled={disabled}
-            onClick={clickHandler}
+            onClick={onClick}
             className={classNames(classNameParams)}
         >
             { children }

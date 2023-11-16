@@ -12,7 +12,7 @@ export const ThemeSwitcher: FC = () => {
 
   return (
     <Button
-      clickHandler={toggleThemeValue}
+      onClick={toggleThemeValue}
       additionalClasses={['noBorder']}
       hovered={false}
     >
