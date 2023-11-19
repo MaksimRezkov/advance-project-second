@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { IClassNamesParams, classNames } from "shared/utils/classNames";
-import { useThemeContext } from "./lib/context/useThemeContext";
-import { MainLayout } from "layouts/MainLayout";
-import "./styles/index.scss";
-import { AppRouter } from "./router/AppRouter";
+import { FC } from 'react';
+import { IClassNamesParams, classNames } from 'shared/utils/classNames';
+import { useThemeContext } from './lib/context/useThemeContext';
+import { MainLayout } from 'layouts/MainLayout';
+import './styles/index.scss';
+import { AppRouter } from './router/AppRouter';
 
 export const App: FC = () => {
   const { themeValue } = useThemeContext();
@@ -19,4 +19,4 @@ export const App: FC = () => {
       </MainLayout>
     </div>
   );
-}
+};

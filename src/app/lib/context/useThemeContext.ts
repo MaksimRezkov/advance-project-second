@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { LOCAL_STORAGE_THEME_KEY, AppContext, ThemeValueType } from "./Context";
+import { useContext } from 'react';
+import { LOCAL_STORAGE_THEME_KEY, AppContext, ThemeValueType } from './Context';
 
 export interface IUseThemeResult {
-  themeValue: ThemeValueType;
-  toggleThemeValue: () => void;
+  themeValue: ThemeValueType
+  toggleThemeValue: () => void
 }
 
 /** Хук для получения и управления состоянием данных о теме из контекста приложения */
-export function useThemeContext(): IUseThemeResult {
+export function useThemeContext (): IUseThemeResult {
   /** Достаём данные из контекста, прокинутые в провайдере */
   const { themeValue, setThemeValue } = useContext(AppContext);
 

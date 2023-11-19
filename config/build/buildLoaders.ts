@@ -1,8 +1,8 @@
-import { IBuildOptions } from "./types";
+import { IBuildOptions } from './types';
 import webpack from 'webpack';
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-export function buildLoaders(buildOptions: IBuildOptions): webpack.RuleSetRule[] {
+export function buildLoaders (buildOptions: IBuildOptions): webpack.RuleSetRule[] {
   const tsLoader = {
     test: /\.tsx?$/,
     use: 'ts-loader',
@@ -10,7 +10,7 @@ export function buildLoaders(buildOptions: IBuildOptions): webpack.RuleSetRule[]
   };
 
   const cssModuleLoader = {
-    loader: "css-loader",
+    loader: 'css-loader',
     options: {
       modules: {
         auto: (resourcePath: string) => resourcePath.includes('.module.'),
@@ -21,11 +21,11 @@ export function buildLoaders(buildOptions: IBuildOptions): webpack.RuleSetRule[]
     test: /\.s[ac]ss$/i,
     use: [
       // Creates `style` nodes from JS strings
-      buildOptions.isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+      buildOptions.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       // Translates CSS into CommonJS
       cssModuleLoader,
       // Compiles Sass to CSS
-      "sass-loader",
+      'sass-loader',
     ],
   };
 
@@ -51,11 +51,11 @@ export function buildLoaders(buildOptions: IBuildOptions): webpack.RuleSetRule[]
       loader: 'babel-loader',
       options: {
         presets: [
-          ['@babel/preset-env', { targets: "defaults" }]
-        ]
-      }
-    }
-  }
+          ['@babel/preset-env', { targets: 'defaults' }],
+        ],
+      },
+    },
+  };
 
   return [
     fileLoader,

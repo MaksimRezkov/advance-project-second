@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { Header } from "widgets/Header/ui/Header";
-import { Sidebar } from "widgets/Sidebar";
-import "./MainLayout.scss";
+import { FC } from 'react';
+import { Header } from 'widgets/Header/ui/Header';
+import { Sidebar } from 'widgets/Sidebar';
+import './MainLayout.scss';
 
 export const MainLayout: FC = ({ children }) => {
   return (

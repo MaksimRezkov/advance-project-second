@@ -5,14 +5,14 @@ import { buildLoaders } from './buildLoaders';
 import { buildResolvers } from './buildResolvers';
 import { buildDevServer } from './buildDevServer';
 
-export function buildWebpackConfig(buildOptions: IBuildOptions): webpack.Configuration {
+export function buildWebpackConfig (buildOptions: IBuildOptions): webpack.Configuration {
   return {
     mode: buildOptions.mode,
     entry: buildOptions.paths.entry,
     output: {
       filename: buildOptions.paths.bundleFileName,
       path: buildOptions.paths.output,
-      clean: true
+      clean: true,
     },
     plugins: buildPlugins(buildOptions),
     module: {

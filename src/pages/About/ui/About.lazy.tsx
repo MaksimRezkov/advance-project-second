@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-const AboutLazy = lazy(() => new Promise((resolve: Function, reject: Function) => {
+const AboutLazy = lazy(async () => await new Promise((resolve: Function, reject: Function) => {
   setTimeout(() => {
     resolve(import('./About'));
   }, 1500);

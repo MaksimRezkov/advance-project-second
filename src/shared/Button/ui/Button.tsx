@@ -1,16 +1,15 @@
-import { FC, MouseEventHandler } from "react";
-import styleClasses from "./Button.module.scss";
-import { classNames, IClassNamesParams } from "shared/utils/classNames";
+import { FC, MouseEventHandler } from 'react';
+import styleClasses from './Button.module.scss';
+import { classNames, IClassNamesParams } from 'shared/utils/classNames';
 
 export interface IButtonProps {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-    additionalClasses?: string[];
-    disabled?: boolean;
-    hovered?: boolean;
+    onClick?: MouseEventHandler<HTMLButtonElement>
+    additionalClasses?: string[]
+    disabled?: boolean
+    hovered?: boolean
 };
 
 export const Button: FC<IButtonProps> = (props) => {
-
     const { children, additionalClasses = [], onClick, disabled = false, hovered = true } = props;
     const classNameParams: IClassNamesParams = {
         mainClassName: styleClasses.appButton,
@@ -26,4 +25,4 @@ export const Button: FC<IButtonProps> = (props) => {
             { children }
         </button>
     );
-}
+};

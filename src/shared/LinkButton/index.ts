@@ -1,3 +1,3 @@
-import { LinkButton } from "./ui/LinkButton";
+import { LinkButton } from './ui/LinkButton';
 
 export { LinkButton };

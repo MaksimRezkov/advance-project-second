@@ -1,3 +1,3 @@
-import HomeLazy from "./ui/Home.lazy";
+import HomeLazy from './ui/Home.lazy';
 
 export { HomeLazy };
