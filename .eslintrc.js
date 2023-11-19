@@ -1,7 +1,8 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true,
     },
     "extends": [
         "standard-with-typescript",
@@ -39,6 +40,7 @@ module.exports = {
         '@typescript-eslint/semi': ['error', 'always'],
         "@typescript-eslint/consistent-type-imports": ["off"],
         "@typescript-eslint/prefer-nullish-coalescing": ["off"],
-        "@typescript-eslint/strict-boolean-expressions": ["off"]
+        "@typescript-eslint/strict-boolean-expressions": ["off"],
+        "@typescript-eslint/no-unused-vars": ["warn"]
     }
 }

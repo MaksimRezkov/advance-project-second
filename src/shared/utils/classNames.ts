@@ -4,7 +4,7 @@ export interface IClassNamesParams {
   mods?: Record<string, boolean>
 }
 
-export function classNames (params: IClassNamesParams) {
+export function classNames (params: IClassNamesParams): string {
   const { mainClassName, additional = [], mods = {} } = params;
   let classNameResult = mainClassName;
 
