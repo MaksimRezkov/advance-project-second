@@ -19,6 +19,11 @@
     display: flex;
     align-items: center;
   }
+
+  &-column {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .transparent {
