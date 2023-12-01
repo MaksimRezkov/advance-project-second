@@ -1,4 +1,4 @@
-import { classNames } from './classNames';
+import { classNames } from 'shared/utils/classNames';
 
 describe('classNames', () => {
   test('true value', () => {

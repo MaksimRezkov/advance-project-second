@@ -38,6 +38,9 @@ const config = {
       '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
   ],
   rootDir: '../../',
+  modulePaths: [
+    '<rootDir>/src',
+  ],
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
