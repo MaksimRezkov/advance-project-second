@@ -7,10 +7,19 @@ export interface IButtonProps {
     additionalClasses?: string[]
     disabled?: boolean
     hovered?: boolean
+    testId?: string
 };
 
 export const Button: FC<IButtonProps> = (props) => {
-    const { children, additionalClasses = [], onClick, disabled = false, hovered = true } = props;
+    const {
+        children,
+        additionalClasses = [],
+        onClick,
+        disabled = false,
+        hovered = true,
+        testId,
+    } = props;
+
     const classNameParams: IClassNamesParams = {
         mainClassName: styleClasses.appButton,
         additional: [...additionalClasses, hovered ? styleClasses.btnWithHover : ''],
@@ -21,6 +30,7 @@ export const Button: FC<IButtonProps> = (props) => {
             disabled={disabled}
             onClick={onClick}
             className={classNames(classNameParams)}
+            data-testid={testId}
         >
             { children }
         </button>

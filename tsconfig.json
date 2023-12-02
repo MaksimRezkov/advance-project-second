@@ -17,5 +17,11 @@
         "compilerOptions": {
             "module": "CommonJS"
         }
-    }
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx",
+        "./config/jest/jest-setup.ts",
+        "./config/jest/jestSvgEmptyComponent.tsx"
+    ],
 }

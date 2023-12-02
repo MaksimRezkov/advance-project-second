@@ -29,11 +29,12 @@ export const Sidebar: FC = () => {
 
   return (
     <>
-      <div className={classNameSidebar}>
+      <div data-testid="sidebar" className={classNameSidebar}>
         <Button
           onClick={() => { setCollapsed(!isCollapsed); }}
           additionalClasses={additionalClassesBtn}
           hovered={false}
+          testId="toggleBtn"
         >
           {themeValue === 'light' ? <ArrowSvgDark /> : <ArrowSvgLight/>}
         </Button>
