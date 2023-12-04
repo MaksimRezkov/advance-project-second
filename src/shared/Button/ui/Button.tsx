@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import styleClasses from './Button.module.scss';
 import { classNames, IClassNamesParams } from 'shared/utils/classNames';
 

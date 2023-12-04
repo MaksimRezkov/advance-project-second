@@ -6,7 +6,8 @@ module.exports = {
     },
     "extends": [
         "standard-with-typescript",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:storybook/recommended"
     ],
     "overrides": [
         {
@@ -31,6 +32,7 @@ module.exports = {
     ],
     "rules": {
         "react/react-in-jsx-scope": ["off"],
+        "react/display-name": ["off"],
         "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
 
         'max-len': 'off',

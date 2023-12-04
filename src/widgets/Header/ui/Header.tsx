@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { LinkButton } from 'shared/LinkButton';
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import './Header.scss';
