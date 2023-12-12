@@ -1,6 +1,5 @@
 .button_link {
   padding: 6px 8px;
-  border: 1px solid var(--color-main);
   border-radius: 2px;
   color: var(--color-main);
   text-decoration: none;
@@ -10,4 +9,11 @@
       background-color: var(--color-main);
       color: var(--color-main-revert);
   }
+}
+
+.outline {
+  border: 1px solid var(--color-main);
+  &:hover {
+    border: 1px solid var(--color-main-revert);
+}
 }

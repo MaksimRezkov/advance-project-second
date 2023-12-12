@@ -1,4 +1,4 @@
-.app-sidebar {
+.appSidebar {
   position: fixed;
   left: 10px;
   top: 10%;
@@ -7,20 +7,40 @@
   max-width: 300px;
   border: 1px solid var(--color-main);
   transition: height .3s linear;
+  overflow: hidden;
 
-  &__collapsed {
+  &Collapsed {
     height: 45px;
   }
 }
 
-.toggle-sidebar-arrow {
+.toggleSidebarArrow {
   position: relative;
-  width: 45px;
   height: 45px;
 
   transition: transform linear .3s;
 }
 
-.rotate-toggle-sidebar {
+.rotateToggleSidebar {
   transform: rotate(180deg);
+}
+
+.items {
+  width: 100%;
+}
+
+.item {
+  width: 100%;
+  padding: 10px;
+}
+
+.link {
+  display: block;
+  width: 100%;
+  gap: 15px;
+  fill: var(--color-main);
+
+  &:hover {
+    fill: var(--color-main-revert);
+  }
 }

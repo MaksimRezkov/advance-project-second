@@ -5,13 +5,17 @@ import styleClasses from './LinkButton.module.scss';
 
 export interface ILinkButtonProps extends LinkProps {
   additionalClassNames?: string[]
+  outline?: boolean
 };
 
 export const LinkButton: FC<ILinkButtonProps> = (props) => {
-  const { to, children, additionalClassNames = [] } = props;
+  const { to, children, additionalClassNames = [], outline = true } = props;
   const className = classNames({
     mainClassName: styleClasses.button_link,
     additional: additionalClassNames,
+    mods: {
+      [styleClasses.outline]: outline,
+    },
   });
 
   return (

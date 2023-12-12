@@ -1,26 +1,33 @@
 import { FC, useMemo, useState } from 'react';
 import { classNames } from 'shared/utils/classNames';
-import './Sidebar.scss';
-import { Button } from 'shared/Button/ui/Button';
+import styleClasses from './Sidebar.module.scss';
+import { Button, ButtonSizes } from 'shared/Button/ui/Button';
 import ArrowSvgDark from 'shared/assets/icons/chevron-down.svg';
 import ArrowSvgLight from 'shared/assets/icons/chewron-down-light.svg';
 import { useThemeContext } from 'app/lib/context/useThemeContext';
+import { LinkButton } from 'shared/LinkButton';
+import { RoutePaths } from 'app/router/RouterConfig';
+import HomeSvg from 'shared/assets/icons/home.svg';
+import AboutSvg from 'shared/assets/icons/about.svg';
 
 export const Sidebar: FC = () => {
   const [isCollapsed, setCollapsed] = useState<boolean>(false);
   const classNameSidebar: string = useMemo(() => classNames({
-      mainClassName: 'app-sidebar',
-      additional: ['flex-j-center'],
+      mainClassName: styleClasses.appSidebar,
+      additional: ['flex-align-center', 'flex-column'],
       mods: {
-        'app-sidebar__collapsed': isCollapsed,
+        [styleClasses.appSidebarCollapsed]: isCollapsed,
       },
     }),
     [isCollapsed],
   );
 
   const additionalClassesBtn = useMemo(() => {
-      if (isCollapsed) return ['noBorder', 'toggle-sidebar-arrow', 'flex-all-center', 'rotate-toggle-sidebar'];
-      return ['noBorder', 'toggle-sidebar-arrow', 'flex-all-center'];
+      const classes = ['noBorder', styleClasses.toggleSidebarArrow, 'flex-all-center'];
+      if (isCollapsed) {
+        classes.push(styleClasses.rotateToggleSidebar);
+      }
+      return classes;
     },
     [isCollapsed],
   );
@@ -35,9 +42,45 @@ export const Sidebar: FC = () => {
           additionalClasses={additionalClassesBtn}
           hovered={false}
           testId="toggleBtn"
+          size={ButtonSizes.L}
         >
           {themeValue === 'light' ? <ArrowSvgDark /> : <ArrowSvgLight/>}
         </Button>
+
+        <div className={classNames({ mainClassName: styleClasses.items, additional: ['flex-column'] })}>
+          <div
+            className={
+              classNames({
+                mainClassName: styleClasses.item,
+              })
+            }
+          >
+            <LinkButton
+              to={RoutePaths.main}
+              outline={false}
+              additionalClassNames={[styleClasses.link, 'flex-align-center']}
+            >
+              <HomeSvg/>
+              Home
+            </LinkButton>
+          </div>
+          <div
+            className={
+              classNames({
+                mainClassName: styleClasses.item,
+              })
+            }
+          >
+            <LinkButton
+              to={RoutePaths.about}
+              outline={false}
+              additionalClassNames={[styleClasses.link, 'flex-align-center']}
+            >
+              <AboutSvg />
+              About
+            </LinkButton>
+          </div>
+        </div>
       </div>
     </>
   );

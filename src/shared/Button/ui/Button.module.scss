@@ -3,7 +3,6 @@
   color: var(--color-main);
   background-color: transparent;
   border: 1px solid var(--color-main);
-  border-radius: 3px;
   outline: none;
   cursor: pointer;
   &:focus {
@@ -12,8 +11,25 @@
 }
 
 .btnWithHover {
+  transition: background-color ease-in .2s;
   &:hover {
       color: var(--color-main-revert);
       background-color: var(--color-main);
   }
+}
+
+.btnBordered {
+  border-radius: 4px;
+}
+
+.btn_m {
+  padding: 12px 15px;
+}
+
+.btn_l {
+  padding: 15px 18px;
+}
+
+.btn_xl {
+  padding: 18px 22px;
 }

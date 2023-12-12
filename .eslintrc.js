@@ -34,6 +34,7 @@ module.exports = {
         "react/react-in-jsx-scope": ["off"],
         "react/display-name": ["off"],
         "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
+        "@typescript-eslint/explicit-function-return-type": ["warn"],
 
         'max-len': 'off',
         'semi': 'off',
