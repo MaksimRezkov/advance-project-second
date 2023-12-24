@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import styleClasses from './Modal.module.scss';
 import { classNames } from 'shared/utils/classNames';
 import CloseBtnIcon from 'shared/assets/icons/close-btn.svg';
