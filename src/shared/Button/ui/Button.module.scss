@@ -2,8 +2,8 @@
   padding: 6px 8px;
   color: var(--color-main);
   background-color: transparent;
-  border: 1px solid var(--color-main);
   outline: none;
+  border: none;
   cursor: pointer;
   &:focus {
       outline: none;
@@ -18,18 +18,30 @@
   }
 }
 
+.btnWithHoverShadow {
+  transition: background-color ease-in .2s;
+  &:hover {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.314);
+  }
+}
+
 .btnBordered {
+  border: 1px solid var(--color-main);
   border-radius: 4px;
 }
 
+.btnCircle {
+  border-radius: 50%;
+}
+
 .btn_m {
-  padding: 12px 15px;
+  padding: 5px 5px;
 }
 
 .btn_l {
-  padding: 15px 18px;
+  padding: 8px 8px;
 }
 
 .btn_xl {
-  padding: 18px 22px;
+  padding: 14px 14px;
 }

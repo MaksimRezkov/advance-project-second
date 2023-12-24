@@ -8,6 +8,7 @@ const themeValueDefault = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme
 export const ThemeContextProvider: FC = ({ children }) => {
   /** Исходные значения для полей контекста, относящихся к теме */
   const [themeValue, setThemeValue] = useState<ThemeValueType>(themeValueDefault);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   /** Мемоизированный объект с данными контекста, прокидывается в приложения и доступен в любом месте;
    * ссылки на состояния свойств, например themeValue, потом используются в каком-либо месте;
@@ -18,8 +19,10 @@ export const ThemeContextProvider: FC = ({ children }) => {
     return {
       themeValue,
       setThemeValue,
+      isModalOpen,
+      setModalOpen,
     };
-  }, [themeValue]);
+  }, [themeValue, isModalOpen]);
 
   return (
     <AppContext.Provider value={ContextValue}>

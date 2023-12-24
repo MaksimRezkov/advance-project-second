@@ -1,0 +1,41 @@
+.modalBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  padding: 15px;
+
+  z-index: 10;
+}
+
+.modalBody {
+  max-width: 600px;
+  background-color: var(--bg-color-content);
+  color: var(--color-main);
+  padding: 15px;
+  border-radius: 10px;
+
+  transform: scale(0.2);
+  transition: transform linear 0.2s;
+}
+
+.modalOpened {
+  transform: scale(1);
+}
+
+.modalContent {
+  margin-top: 20px;
+}
+
+.modalHeader {
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

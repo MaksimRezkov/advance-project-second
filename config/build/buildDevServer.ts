@@ -6,5 +6,8 @@ export function buildDevServer (buildOptions: IBuildOptions): DevServerConfigura
     port: buildOptions.port,
     open: false,
     historyApiFallback: true,
+    client: {
+      logging: 'none',
+    },
   };
 }

@@ -7,6 +7,8 @@ export function buildStylesLoader (isDev: boolean): webpack.RuleSetRule {
     options: {
       modules: {
         auto: (resourcePath: string) => resourcePath.includes('.module.'),
+        // Имена классов стилей в реж. isDev читаемые
+        localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:8]',
       },
     },
   };

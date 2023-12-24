@@ -10,6 +10,8 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     testId?: string
     bordered?: boolean
     size?: ButtonSizes
+    circle?: boolean
+    hoveredWithShadow?: boolean
 };
 
 export enum ButtonSizes {
@@ -28,6 +30,8 @@ export const Button: FC<IButtonProps> = (props) => {
         testId,
         bordered,
         size = ButtonSizes.L,
+        circle,
+        hoveredWithShadow,
     } = props;
 
     const classNameParams: IClassNamesParams = {
@@ -35,7 +39,9 @@ export const Button: FC<IButtonProps> = (props) => {
         additional: [...additionalClasses, styleClasses[size]],
         mods: {
             [styleClasses.btnWithHover]: hovered,
+            [styleClasses.btnWithHoverShadow]: hoveredWithShadow,
             [styleClasses.btnBordered]: bordered,
+            [styleClasses.btnCircle]: circle,
         },
     };
 
