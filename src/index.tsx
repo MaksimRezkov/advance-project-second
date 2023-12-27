@@ -1,12 +1,12 @@
 import { render } from 'react-dom';
-import { App } from './app';
 import { BrowserRouter } from 'react-router-dom';
 import { ContextProvider } from './app/lib/context/ContextProvider';
+import { WithApp } from 'app/WithApp';
 
 render(
   <BrowserRouter>
     <ContextProvider>
-      <App/>
+      <WithApp/>
     </ContextProvider>
   </BrowserRouter>,
   document.querySelector('.root'),

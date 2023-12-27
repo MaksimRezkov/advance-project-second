@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Header } from 'widgets/Header/ui/Header';
 import { Sidebar } from 'widgets/Sidebar';
 import './MainLayout.scss';
@@ -6,13 +6,15 @@ import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
 import { Modal } from 'shared/Modal';
 import { Portal } from 'shared/Portal/ui/Portal';
 
+const SidebarMemo = memo(Sidebar);
+
 export const MainLayout: FC = ({ children }) => {
   const { isModalOpen } = useModalOpenContext();
 
   return (
     <div className="app-layout">
       <Header/>
-      <Sidebar/>
+      <SidebarMemo/>
       <div className="layout_content-wrapp">
         { children }
       </div>
