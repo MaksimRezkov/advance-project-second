@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LOCAL_STORAGE_THEME_KEY, AppContext, ThemeValueType } from './Context';
+import { LOCAL_STORAGE_THEME_KEY, ThemeContext, ThemeValueType } from './Context';
 
 export interface IUseThemeResult {
   themeValue: ThemeValueType
@@ -9,7 +9,7 @@ export interface IUseThemeResult {
 /** Хук для получения и управления состоянием данных о теме из контекста приложения */
 export function useThemeContext (): IUseThemeResult {
   /** Достаём данные из контекста, прокинутые в провайдере */
-  const { themeValue, setThemeValue } = useContext(AppContext);
+  const { themeValue, setThemeValue } = useContext(ThemeContext);
 
   /** Ссылка на функцию, использующую обновление состояния и вызываемую где-либо в приложении */
   const toggleThemeValue = () => {

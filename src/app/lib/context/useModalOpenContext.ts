@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { AppContext } from './Context';
+import { ModalContext } from './Context';
 
 export const useModalOpenContext = () => {
-  const { isModalOpen, setModalOpen } = useContext(AppContext);
+  const { isModalOpen, setModalOpen } = useContext(ModalContext);
 
   return {
     isModalOpen,

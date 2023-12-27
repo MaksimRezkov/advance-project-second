@@ -4,16 +4,20 @@ import React, { createContext } from 'react';
 
 export type ThemeValueType = 'light' | 'dark';
 
-export interface IContextValues {
-  // цветовая тема
+/** цветовая тема */
+export interface IThemeContextValues {
   themeValue?: ThemeValueType
   setThemeValue?: (themeValue: ThemeValueType) => void
 
-  // состояние модалки
+}
+
+/** состояние модалки */
+export interface IModalContextValues {
   isModalOpen?: boolean
   setModalOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 /** Объект контекста, включающий объект с данными */
-export const AppContext = createContext<IContextValues>({});
+export const ThemeContext = createContext<IThemeContextValues>({});
+export const ModalContext = createContext<IModalContextValues>({});
 export const LOCAL_STORAGE_THEME_KEY = 'theme';
