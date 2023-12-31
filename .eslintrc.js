@@ -35,6 +35,7 @@ module.exports = {
         "react/display-name": ["off"],
         "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
         "@typescript-eslint/explicit-function-return-type": ["warn"],
+        "@typescript-eslint/no-empty-interface": ["off"],
 
         'max-len': 'off',
         'semi': 'off',
