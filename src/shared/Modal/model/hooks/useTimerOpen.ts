@@ -3,14 +3,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 type TimerId = ReturnType<typeof setTimeout>;
 
 export interface IUseTimerOpen {
-  isAddOpened: boolean
-  setAddOpened: ReturnType<typeof useState<boolean>>[1]
+  isModalOpenedClass: boolean
+  setModalOpenedClass: ReturnType<typeof useState<boolean>>[1]
   addTimer: ReturnType<typeof useCallback>
 }
 
 export const useTimerOpen: () => IUseTimerOpen = () => {
   const timerOpenIds: ReturnType<typeof useRef<TimerId[]>> = useRef([]);
-  const [isAddOpened, setAddOpened] = useState(false);
+  const [isModalOpenedClass, setModalOpenedClass] = useState(false);
 
   const addTimer = useCallback<(callback: () => void, delay?: number) => void>((callback: () => void, delay = 0) => {
     timerOpenIds.current.push(setTimeout(callback, delay));
@@ -18,10 +18,11 @@ export const useTimerOpen: () => IUseTimerOpen = () => {
 
   useEffect(() => {
     addTimer(() => {
-      setAddOpened(true);
+      setModalOpenedClass(true);
     });
 
     return () => {
+      /** Очитска всех web api's уничтоженного компонента */
       timerOpenIds.current.forEach(timerId => {
         if (timerId) {
           clearTimeout(timerId);
@@ -31,8 +32,8 @@ export const useTimerOpen: () => IUseTimerOpen = () => {
   }, []);
 
   return {
-    isAddOpened,
-    setAddOpened,
+    isModalOpenedClass,
+    setModalOpenedClass,
     addTimer,
   };
 };

@@ -1,59 +1,57 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, memo, useCallback, useEffect, useMemo } from 'react';
 import styleClasses from './Modal.module.scss';
 import { classNames } from 'shared/utils/classNames';
 import CloseBtnIcon from 'shared/assets/icons/close-btn.svg';
 import { Button } from 'shared/Button/ui/Button';
-import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
 import { useTimerOpen } from '../model/hooks/useTimerOpen';
 import { useKeydownHandlers } from '../model/hooks/useKeydownHandlers';
 import { useThemeContext } from 'app/lib/context/useThemeContext';
+import { useCloseModal } from '../model/hooks/useCloseModal';
 
 export interface IModalProps {
   title?: string
+  /** Флаг для закрытия модалки с анимацией */
+  isClosing?: boolean
 }
 
-export const Modal: FC<IModalProps> = ({ children, title }) => {
-  const { setModalOpen } = useModalOpenContext();
-  const { isAddOpened, setAddOpened, addTimer } = useTimerOpen();
+const ButtonMemo = memo(Button);
+
+export const Modal: FC<IModalProps> = ({ children, title, isClosing }) => {
   const { themeValue } = useThemeContext();
-
-  const closeModal = useCallback(() => {
-    setAddOpened(false);
-    addTimer(() => {
-      setModalOpen(false);
-    }, 200);
-  }, [setAddOpened, addTimer, setModalOpen]);
-
+  const { isModalOpenedClass } = useTimerOpen();
+  const CloseBtnIconMemo = useMemo(() => CloseBtnIcon, []);
+  const { closeModal } = useCloseModal();
   useKeydownHandlers(closeModal);
 
-  const onCloseModal = useCallback(() => {
-    closeModal();
-  }, [closeModal]);
+  useEffect(() => {
+    if (isClosing) {
+      closeModal();
+    }
+  }, [isClosing]);
 
   return (
     <div
       className={classNames({ mainClassName: styleClasses.modalBg, additional: ['flex-all-center'] })}
-      onClick={onCloseModal}
+      onClick={closeModal}
     >
       <div
         className={classNames({
           mainClassName: styleClasses.modalBody,
-          mods: { [styleClasses.modalOpened]: isAddOpened },
+          mods: { [styleClasses.modalOpened]: isModalOpenedClass },
           additional: [themeValue],
         })}
         onClick={(e) => { e.stopPropagation(); }}
       >
         <div className={styleClasses.modalHeader}>
           <h2>{ title }</h2>
-          <Button
+          <ButtonMemo
             additionalClasses={[styleClasses.closeBtn]}
             bordered={false}
-            hoveredWithShadow={true}
             hovered={false}
-            onClick={onCloseModal}
+            onClick={closeModal}
           >
-              <CloseBtnIcon/>
-          </Button>
+              <CloseBtnIconMemo/>
+          </ButtonMemo>
         </div>
         <div className={styleClasses.modalContent}>
           { children }
