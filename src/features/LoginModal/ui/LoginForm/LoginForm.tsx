@@ -20,7 +20,7 @@ export const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
   return (
     <div className={formClassName}>
       <div className={formInputsClassName}>
-        <ApInputMemo placeholder='Логин' onInput={loginInputHandler} value={login}/>
+        <ApInputMemo placeholder='Логин' onInput={loginInputHandler} value={login} isFocused={true}/>
         <ApInputMemo placeholder='Пароль' onInput={passwordInputHandler} value={password}/>
       </div>
       <div className={formBtnsClassName}>

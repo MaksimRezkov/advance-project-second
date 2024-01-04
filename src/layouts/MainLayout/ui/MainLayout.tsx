@@ -20,7 +20,8 @@ export const MainLayout: FC = ({ children }) => {
       </div>
 
       {
-        isModalOpen && <Portal>
+        isModalOpen &&
+        <Portal>
           <LoginModal/>
         </Portal>
       }

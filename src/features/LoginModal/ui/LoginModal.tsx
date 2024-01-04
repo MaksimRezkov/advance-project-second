@@ -22,13 +22,13 @@ export const LoginModal: FC = () => {
 
   return (
     <Modal title='Введите логин и пароль' isClosing={isClosingModal}>
-        <LoginForm onConfirm={confirmForm} onCancel={cancelForm}/>
-        {
-          isLoadingForm &&
-          <div className={classNames({ mainClassName: styleClasses.loaderWrapp, additional: ['flex-all-center'] })}>
-            <LoaderSpinner/>
-          </div>
-        }
-      </Modal>
+      <LoginForm onConfirm={confirmForm} onCancel={cancelForm}/>
+      {
+        isLoadingForm &&
+        <div className={classNames({ mainClassName: styleClasses.loaderWrapp, additional: ['flex-all-center'] })}>
+          <LoaderSpinner/>
+        </div>
+      }
+    </Modal>
   );
 };
