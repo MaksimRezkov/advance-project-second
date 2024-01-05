@@ -20,4 +20,3 @@ export interface IModalContextValues {
 /** Объект контекста, включающий объект с данными */
 export const ThemeContext = createContext<IThemeContextValues>({});
 export const ModalContext = createContext<IModalContextValues>({});
-export const LOCAL_STORAGE_THEME_KEY = 'theme';

@@ -18,9 +18,8 @@ const ButtonMemo = memo(Button);
 
 export const Modal: FC<IModalProps> = ({ children, title, isClosing }) => {
   const { themeValue } = useThemeContext();
-  const { isModalOpenedClass } = useTimerOpen();
   const CloseBtnIconMemo = useMemo(() => CloseBtnIcon, []);
-  const { closeModal } = useCloseModal();
+  const { closeModal, isModalOpenedClass } = useCloseModal();
   useKeydownHandlers(closeModal);
 
   useEffect(() => {
