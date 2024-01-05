@@ -1,0 +1,11 @@
+.alertWrapp {
+  overflow: hidden;
+}
+
+.container {
+  transition: transform 0.3s linear;
+
+  &_hidden {
+    transform: translateY(-100%);
+  }
+}

@@ -36,6 +36,7 @@ module.exports = {
         "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
         "@typescript-eslint/explicit-function-return-type": ["warn"],
         "@typescript-eslint/no-empty-interface": ["off"],
+        "react/prop-types": ["warn"],
 
         'max-len': 'off',
         'semi': 'off',

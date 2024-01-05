@@ -18,7 +18,7 @@ server.use(async (req, res, next) => {
 });
 
 // Эндпоинт для логина
-server.post('/login', (req, res) => {
+server.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
@@ -29,7 +29,15 @@ server.post('/login', (req, res) => {
         );
 
         if (userFromBd) {
-            return res.json(userFromBd);
+            await new Promise((res, rej) => {
+                setTimeout(() => {
+                    res();
+                }, 2000);
+            });
+            return res.json({
+                id: userFromBd.id,
+                username: userFromBd.username,
+            });
         }
 
         return res.status(403).json({ message: 'User not found' });

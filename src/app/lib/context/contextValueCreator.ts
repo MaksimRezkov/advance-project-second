@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
-import { IModalContextValues, IThemeContextValues, LOCAL_STORAGE_THEME_KEY, ThemeValueType } from './Context';
+import { IModalContextValues, IThemeContextValues, ThemeValueType } from './Context';
+import { LOCAL_STORAGE_THEME_KEY } from 'shared/const/LocalStorage';
 
 /** Создаём исходное значение для одного из полей контекста */
 const themeValueDefault = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as ThemeValueType || 'light';

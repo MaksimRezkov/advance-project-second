@@ -4,5 +4,5 @@ export interface IAuthUser {
 }
 
 export interface IAuthUserSchema {
-  authData: IAuthUser
+  authData: IAuthUser | null
 }

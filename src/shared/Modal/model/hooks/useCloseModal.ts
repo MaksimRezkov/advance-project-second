@@ -3,7 +3,7 @@ import { useTimerOpen } from './useTimerOpen';
 import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
 
 export function useCloseModal () {
-  const { setModalOpenedClass, addTimer } = useTimerOpen();
+  const { setModalOpenedClass, addTimer, isModalOpenedClass } = useTimerOpen();
   const { setModalOpen } = useModalOpenContext();
 
   const closeModal = useCallback(() => {
@@ -15,5 +15,7 @@ export function useCloseModal () {
 
   return {
     closeModal,
+    setModalOpenedClass,
+    isModalOpenedClass,
   };
 };
