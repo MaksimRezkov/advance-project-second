@@ -1,11 +1,11 @@
-import React, { FC, memo, useCallback, useMemo } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { LinkButton } from 'shared/LinkButton';
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import './Header.scss';
 import { Button } from 'shared/Button/ui/Button';
 import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
 import { useSelector } from 'react-redux';
-import { getAuthUserId } from 'entityes/AuthUser/model/selectors/getAuthUserId';
+import { getAuthUserId } from 'entityes/AuthUser';
 
 const LinkButtonMemo = memo(LinkButton);
 const ThemeSwitcherMemo = memo(ThemeSwitcher);

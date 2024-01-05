@@ -7,7 +7,7 @@ import { classNames } from 'shared/utils/classNames';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoginLoading, loginActions } from 'features/AuthByUsername';
 import { LogoutForm } from './LogoutForm/LogoutForm';
-import { getAuthUserId } from 'entityes/AuthUser/model/selectors/getAuthUserId';
+import { getAuthUserId } from 'entityes/AuthUser';
 
 const LoginFormMemo = memo(LoginForm);
 
