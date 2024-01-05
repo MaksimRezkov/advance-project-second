@@ -1,12 +1,11 @@
-import React, { FC, memo, useCallback, useEffect, useMemo } from 'react';
+import React, { FC, memo, useEffect, useMemo } from 'react';
 import styleClasses from './Modal.module.scss';
 import { classNames } from 'shared/utils/classNames';
 import CloseBtnIcon from 'shared/assets/icons/close-btn.svg';
 import { Button } from 'shared/Button/ui/Button';
-import { useTimerOpen } from '../model/hooks/useTimerOpen';
-import { useKeydownHandlers } from '../model/hooks/useKeydownHandlers';
+import { useKeydownHandlers } from '../lib/hooks/useKeydownHandlers';
 import { useThemeContext } from 'app/lib/context/useThemeContext';
-import { useCloseModal } from '../model/hooks/useCloseModal';
+import { useCloseModal } from '../lib/hooks/useCloseModal';
 
 export interface IModalProps {
   title?: string

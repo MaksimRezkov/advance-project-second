@@ -12,11 +12,11 @@ export interface IThemeContextValues {
 }
 
 /** состояние модалки */
-export interface IModalContextValues {
-  isModalOpen?: boolean
-  setModalOpen?: React.Dispatch<React.SetStateAction<boolean>>
-}
+// export interface IModalContextValues {
+//   isModalOpen?: boolean
+//   setModalOpen?: React.Dispatch<React.SetStateAction<boolean>>
+// }
 
 /** Объект контекста, включающий объект с данными */
 export const ThemeContext = createContext<IThemeContextValues>({});
-export const ModalContext = createContext<IModalContextValues>({});
+// export const ModalContext = createContext<IModalContextValues>({});

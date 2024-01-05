@@ -1,5 +1,9 @@
 import { useMemo, useState } from 'react';
-import { IModalContextValues, IThemeContextValues, ThemeValueType } from './Context';
+import {
+  // IModalContextValues,
+  IThemeContextValues,
+  ThemeValueType,
+} from './Context';
 import { LOCAL_STORAGE_THEME_KEY } from 'shared/const/LocalStorage';
 
 /** Создаём исходное значение для одного из полей контекста */
@@ -7,13 +11,13 @@ const themeValueDefault = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme
 
 export interface IContextValues {
   ThemeContextValue: IThemeContextValues
-  ModalContextValue: IModalContextValues
+  // ModalContextValue: IModalContextValues
 }
 
 export function contextValueCreator (): IContextValues {
   /** Исходные значения для полей контекста, относящихся к теме */
   const [themeValue, setThemeValue] = useState<ThemeValueType>(themeValueDefault);
-  const [isModalOpen, setModalOpen] = useState(false);
+  // const [isModalOpen, setModalOpen] = useState(false);
 
   /** Мемоизированный объект с данными контекста, прокидывается в приложения и доступен в любом месте;
    * ссылки на состояния свойств, например themeValue, потом используются в каком-либо месте;
@@ -27,15 +31,15 @@ export function contextValueCreator (): IContextValues {
     };
   }, [themeValue]);
 
-  const ModalContextValue = useMemo<IModalContextValues>(() => {
-    return {
-      isModalOpen,
-      setModalOpen,
-    };
-  }, [isModalOpen]);
+  // const ModalContextValue = useMemo<IModalContextValues>(() => {
+  //   return {
+  //     isModalOpen,
+  //     setModalOpen,
+  //   };
+  // }, [isModalOpen]);
 
   return {
     ThemeContextValue,
-    ModalContextValue,
+    // ModalContextValue,
   };
 };

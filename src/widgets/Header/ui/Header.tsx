@@ -3,21 +3,24 @@ import { LinkButton } from 'shared/LinkButton';
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import './Header.scss';
 import { Button } from 'shared/Button/ui/Button';
-import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
-import { useSelector } from 'react-redux';
+// import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAuthUserId } from 'entityes/AuthUser';
+import { modalActions } from 'shared/Modal';
 
 const LinkButtonMemo = memo(LinkButton);
 const ThemeSwitcherMemo = memo(ThemeSwitcher);
 const ButtonMemo = memo(Button);
 
 export const Header: FC = () => {
-  const { setModalOpen } = useModalOpenContext();
+  // const { setModalOpen } = useModalOpenContext();
+  const dispatch = useDispatch();
   const authUserId = useSelector(getAuthUserId);
 
   const onOpenModal = useCallback(() => {
-    setModalOpen((isOpenCurrent: boolean) => !isOpenCurrent);
-  }, [setModalOpen]);
+    // setModalOpen((isOpenCurrent: boolean) => !isOpenCurrent);
+    dispatch(modalActions.toggleOpenModal(true));
+  }, [dispatch, modalActions]);
 
   const loginBtnText = authUserId ? 'Выйти' : 'Войти';
 

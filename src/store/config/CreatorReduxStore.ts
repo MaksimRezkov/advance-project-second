@@ -3,6 +3,7 @@ import { IStateSchema } from '../types/StateSchema';
 import { counterReducer } from 'entityes/Counter';
 import { authUserReducer } from 'entityes/AuthUser';
 import { loginReducer } from 'features/LoginModal';
+import { modalReducer } from 'shared/Modal';
 
 export function CreatorReduxStore (initialState?: IStateSchema) {
   return configureStore<IStateSchema>({
@@ -10,6 +11,7 @@ export function CreatorReduxStore (initialState?: IStateSchema) {
       counter: counterReducer,
       authUser: authUserReducer,
       loginProcess: loginReducer,
+      modal: modalReducer,
     },
     preloadedState: initialState || {},
   });
