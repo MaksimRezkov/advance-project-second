@@ -5,7 +5,8 @@ import styleClasses from './LoginModal.module.scss';
 import { LoaderSpinner } from 'shared/LoaderSpinner';
 import { classNames } from 'shared/utils/classNames';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLoginLoading, loginActions } from 'features/AuthByUsername';
+import { getLoginLoading } from '../model/selectors/getLoginLoading';
+import { loginActions } from '../model/slice/loginSlice';
 import { LogoutForm } from './LogoutForm/LogoutForm';
 import { getAuthUserId } from 'entityes/AuthUser';
 

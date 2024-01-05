@@ -4,7 +4,7 @@ import { Sidebar } from 'widgets/Sidebar';
 import './MainLayout.scss';
 import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
 import { Portal } from 'shared/Portal/ui/Portal';
-import { LoginModal } from 'features/LoginModal/idnex';
+import { LoginModal } from 'features/LoginModal';
 
 const SidebarMemo = memo(Sidebar);
 

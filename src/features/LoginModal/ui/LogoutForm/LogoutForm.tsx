@@ -1,5 +1,5 @@
 import { authUserActions } from 'entityes/AuthUser';
-import { getClassName } from 'features/LoginModal/lib/utils/getClassName';
+import { getClassName } from '../../lib/utils/getClassName';
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'shared/Button/ui/Button';

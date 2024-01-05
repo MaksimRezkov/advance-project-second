@@ -5,8 +5,8 @@ import { useLoginData } from '../../lib/hooks/useLoginData';
 import { usePasswordData } from '../../lib/hooks/usePasswordData';
 import { Button } from 'shared/Button/ui/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAsyncThunk } from 'features/AuthByUsername/model/service/LoginAsyncThunk';
-import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError';
+import { loginAsyncThunk } from '../../model/service/LoginAsyncThunk';
+import { getLoginError } from '../../model/selectors/getLoginError';
 import { AnimationAlertWrapp, ErrorAlert } from 'shared/Alert';
 
 const ApInputMemo = memo(ApInput);
