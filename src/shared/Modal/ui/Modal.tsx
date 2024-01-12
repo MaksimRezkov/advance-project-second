@@ -11,14 +11,15 @@ export interface IModalProps {
   title?: string
   /** Флаг для закрытия модалки с анимацией */
   isClosing?: boolean
+  onClose?: () => void
 }
 
 const ButtonMemo = memo(Button);
 
-export const Modal: FC<IModalProps> = ({ children, title, isClosing }) => {
+export const Modal: FC<IModalProps> = ({ children, title, isClosing, onClose }) => {
   const { themeValue } = useThemeContext();
   const CloseBtnIconMemo = useMemo(() => CloseBtnIcon, []);
-  const { closeModal, isModalOpenedClass } = useCloseModal();
+  const { closeModal, isModalOpenedClass } = useCloseModal(onClose);
   useKeydownHandlers(closeModal);
 
   useEffect(() => {

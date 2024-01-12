@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { modalActions } from 'shared/Modal/model/slice/modalSlice';
 // import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
 
-export function useCloseModal () {
+export function useCloseModal (onClose?: () => void) {
   const { setModalOpenedClass, addTimer, isModalOpenedClass } = useTimerOpen();
   // const { setModalOpen } = useModalOpenContext();
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ export function useCloseModal () {
   const closeModal = useCallback(() => {
     setModalOpenedClass(false);
     addTimer(() => {
+      onClose && onClose();
       // setModalOpen(false);
       dispatch(modalActions.toggleOpenModal(false));
     }, 200);

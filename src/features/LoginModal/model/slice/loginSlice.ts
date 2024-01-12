@@ -11,7 +11,7 @@ export const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    clearLoginStore (state) {
+    setDefaultLoginStore (state) {
       state.error = null;
       state.isLoading = false;
     },

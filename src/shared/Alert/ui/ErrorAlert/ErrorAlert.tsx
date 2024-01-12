@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import styleClasses from './ErrorAlert.module.scss';
 
 export interface IErrorAlertProps {
@@ -7,7 +7,7 @@ export interface IErrorAlertProps {
   details?: string
 }
 
-export const ErrorAlert: FC<IErrorAlertProps> = (props) => {
+export const ErrorAlert: FC<IErrorAlertProps> = memo((props) => {
   const {
     title = 'Ошибка',
     errorText,
@@ -28,4 +28,4 @@ export const ErrorAlert: FC<IErrorAlertProps> = (props) => {
       }
     </div>
   );
-};
+});

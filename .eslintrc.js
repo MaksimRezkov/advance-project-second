@@ -46,6 +46,9 @@ module.exports = {
         "@typescript-eslint/consistent-type-imports": ["off"],
         "@typescript-eslint/prefer-nullish-coalescing": ["off"],
         "@typescript-eslint/strict-boolean-expressions": ["off"],
-        "@typescript-eslint/no-unused-vars": ["warn"]
+        "@typescript-eslint/no-unused-vars": ["warn"],
+        "@typescript-eslint/no-dynamic-delete": ["warn"],
+        "@typescript-eslint/ban-ts-comment": ["warn"],
+        "@typescript-eslint/prefer-ts-expect-error": ["warn"],
     }
 }

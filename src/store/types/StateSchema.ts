@@ -2,11 +2,28 @@ import { ICounterSchema } from './modules/counter/counterTypes';
 import { IAuthUserSchema } from './modules/authUser/authUserTypes';
 import { ILoginSchema } from './modules/login/loginTypes';
 import { IModalSchema } from './modules/modal/modalTypes';
+import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { ThunkMiddlewareFor } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 
 /** Описание глобального хранилища */
 export interface IStateSchema {
   counter: ICounterSchema
   authUser: IAuthUserSchema
-  loginProcess: ILoginSchema
   modal: IModalSchema
+
+  // Async reducers
+  loginProcess?: ILoginSchema
+}
+
+export type StateSchemaKeys = keyof IStateSchema;
+
+export interface IReducerManager {
+  getReducerMap: () => ReducersMapObject<IStateSchema>
+  reduce: (state: IStateSchema, action: AnyAction) => CombinedState<IStateSchema>
+  add: (key: StateSchemaKeys, reducer: Reducer) => void
+  remove: (key: StateSchemaKeys) => void
+}
+
+export interface ReduxStoreWithManager extends EnhancedStore<IStateSchema, AnyAction, [ThunkMiddlewareFor<IStateSchema>]> {
+  reducerManager?: IReducerManager
 }

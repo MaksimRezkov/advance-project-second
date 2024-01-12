@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, useEffect, useRef, useState } from 'react';
 import styleClasses from './AnimationAlertWrapp.module.scss';
 import { classNames } from 'shared/utils/classNames';
 
@@ -10,17 +10,24 @@ export const AnimationAlertWrapp: FC<IAnimationAlertWrappProps> = memo(({ childr
   const [isShow, setShow] = useState(false);
   const containerClassName = {
     mainClassName: styleClasses.container,
-    mods: { [styleClasses.container_hidden]: !isHidden },
+    mods: { [styleClasses.container_hidden]: isHidden },
   };
 
   useEffect(() => {
+    let isAlive = true;
     let delay = 0;
-    if (!isHidden) {
+    if (isHidden) {
       delay = 300;
     }
     setTimeout(() => {
-      setShow(isHidden);
+      if (isAlive) {
+        setShow(!isHidden);
+      }
     }, delay);
+
+    return () => {
+      isAlive = false;
+    };
   }, [isHidden]);
 
   return (

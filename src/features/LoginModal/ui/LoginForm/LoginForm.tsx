@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo } from 'react';
 import { ApInput } from 'shared/input';
 import { getClassName } from '../../lib/utils/getClassName';
 import { useLoginData } from '../../lib/hooks/useLoginData';
@@ -6,8 +6,10 @@ import { usePasswordData } from '../../lib/hooks/usePasswordData';
 import { Button } from 'shared/Button/ui/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAsyncThunk } from '../../model/service/LoginAsyncThunk';
-import { getLoginError } from '../../model/selectors/getLoginError';
+import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { AnimationAlertWrapp, ErrorAlert } from 'shared/Alert';
+import { loginActions, loginReducer } from 'features/LoginModal/model/slice/loginSlice';
+import { AddedReducerConf, useAddAsyncReducer } from 'shared/lib/hooks/useAddAsyncReducer';
 
 const ApInputMemo = memo(ApInput);
 const ButtonMemo = memo(Button);
@@ -17,31 +19,43 @@ export interface IConfirmData {
   password: string
 }
 
-interface LoginFormProps {
+export interface LoginFormProps {
   onConfirm: () => void
   onCancel: () => void
 }
 
-export const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
+const addingReducers: AddedReducerConf[] = [{ reducer: loginReducer, reducerKey: 'loginProcess' }];
+
+const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
   const { formBtnsClassName, formClassName, formInputsClassName } = getClassName();
-  const { login, loginRef, loginInputHandler } = useLoginData();
-  const { password, passwordData, passwordInputHandler } = usePasswordData();
+
   const dispatch = useDispatch();
+  useAddAsyncReducer({
+    reducers: addingReducers,
+    removeAfterDestroy: true,
+  });
+  useEffect(() => {
+    dispatch(loginActions.setDefaultLoginStore());
+  }, []);
+
+  const { login, loginInputHandler } = useLoginData();
+  const { password, passwordInputHandler } = usePasswordData();
+
   const errorLoginResponse = useSelector(getLoginError);
 
   const confirmData = useCallback(() => {
     dispatch(loginAsyncThunk({
       loginData: {
-        password: passwordData.current,
-        username: loginRef.current,
+        password,
+        username: login,
       },
       onSuccessFn: onConfirm,
     }));
-  }, [onConfirm]);
+  }, [onConfirm, login, password]);
 
   return (
     <div className={formClassName}>
-      <AnimationAlertWrapp isHidden={!!errorLoginResponse}>
+      <AnimationAlertWrapp isHidden={!errorLoginResponse}>
         <ErrorAlert errorText={errorLoginResponse}/>
       </AnimationAlertWrapp>
 
@@ -60,3 +74,5 @@ export const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
     </div>
   );
 };
+
+export default LoginForm;

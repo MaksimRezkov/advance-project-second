@@ -1,16 +1,13 @@
-import { FC, memo, useCallback, useState } from 'react';
+import { FC, Suspense, useCallback, useState } from 'react';
 import { Modal } from 'shared/Modal';
-import { LoginForm } from './LoginForm/LoginForm';
+import LoginFormLazy from './LoginForm/LoginForm.lazy';
 import styleClasses from './LoginModal.module.scss';
 import { LoaderSpinner } from 'shared/LoaderSpinner';
 import { classNames } from 'shared/utils/classNames';
-import { useDispatch, useSelector } from 'react-redux';
-import { getLoginLoading } from '../model/selectors/getLoginLoading';
-import { loginActions } from '../model/slice/loginSlice';
+import { useSelector } from 'react-redux';
+import { getLoginLoading } from '../model/selectors/getLoginLoading/getLoginLoading';
 import { LogoutForm } from './LogoutForm/LogoutForm';
 import { getAuthUserId } from 'entityes/AuthUser';
-
-const LoginFormMemo = memo(LoginForm);
 
 export const LoginModal: FC = () => {
   /** local state */
@@ -19,17 +16,17 @@ export const LoginModal: FC = () => {
   /** global state */
   const isLoading = useSelector(getLoginLoading);
   const authUserId = useSelector(getAuthUserId);
-  const dispatch = useDispatch();
 
   const closeModal = useCallback(() => {
     setClosingModal(true);
-    dispatch(loginActions.clearLoginStore());
   }, [setClosingModal]);
 
   const modalTitle = authUserId ? 'Вы действительно хотите выйти?' : 'Введите логин и пароль';
 
   let resultForm = <>
-    <LoginFormMemo onConfirm={closeModal} onCancel={closeModal}/>
+    <Suspense fallback={<LoaderSpinner/>}>
+      <LoginFormLazy onConfirm={closeModal} onCancel={closeModal}/>
+    </Suspense>
     {
       isLoading &&
       <div className={classNames({ mainClassName: styleClasses.loaderWrapp, additional: ['flex-all-center'] })}>
@@ -42,7 +39,7 @@ export const LoginModal: FC = () => {
   }
 
   return (
-    <Modal title={modalTitle} isClosing={isClosingModal}>
+    <Modal title={modalTitle} isClosing={isClosingModal} onClose={closeModal}>
       {resultForm}
     </Modal>
   );

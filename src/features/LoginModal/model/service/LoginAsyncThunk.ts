@@ -5,6 +5,7 @@ import axios from 'axios';
 import { authUserActions } from 'entityes/AuthUser';
 import { localStorageService } from 'shared/utils/LocalStorage/LocalStorageService';
 import { USER_TOKEN_KEY } from 'shared/const/LocalStorage';
+import { loginActions } from '../slice/loginSlice';
 
 export interface ILoginThunkParams {
   loginData: ILoginData
