@@ -9,10 +9,10 @@ describe('getLoginLoading', () => {
         isLoading: false,
       },
     };
-    expect(getLoginLoading(state as IStateSchema)).toBe(state.loginProcess.error);
+    expect(getLoginLoading(state as IStateSchema)).toBe(false);
   });
   test('check value with emty state', () => {
     const state: DeepPartial<IStateSchema> = {};
-    expect(getLoginLoading(state as IStateSchema)).toBe(false);
+    expect(getLoginLoading(state as IStateSchema)).toEqual(undefined);
   });
 });

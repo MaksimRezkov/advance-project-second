@@ -50,5 +50,6 @@ module.exports = {
         "@typescript-eslint/no-dynamic-delete": ["warn"],
         "@typescript-eslint/ban-ts-comment": ["warn"],
         "@typescript-eslint/prefer-ts-expect-error": ["warn"],
+        "@typescript-eslint/unbound-method": ["warn"],
     }
 }
