@@ -4,14 +4,14 @@ import { getClassName } from '../../lib/utils/getClassName';
 import { useLoginData } from '../../lib/hooks/useLoginData';
 import { usePasswordData } from '../../lib/hooks/usePasswordData';
 import { Button } from 'shared/Button/ui/Button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { loginAsyncThunk } from '../../model/service/LoginAsyncThunk';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { AnimationAlertWrapp, ErrorAlert } from 'shared/Alert';
 import { loginActions, loginReducer } from 'features/LoginModal/model/slice/loginSlice';
 import { AddedReducerConf, useAddAsyncReducer } from 'shared/lib/hooks/useAddAsyncReducer';
+import { useAppDispatch } from 'store/lib/hooks/useAppDispatch';
 
-const ApInputMemo = memo(ApInput);
 const ButtonMemo = memo(Button);
 
 export interface IConfirmData {
@@ -29,7 +29,7 @@ const addingReducers: AddedReducerConf[] = [{ reducer: loginReducer, reducerKey:
 const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
   const { formBtnsClassName, formClassName, formInputsClassName } = getClassName();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useAddAsyncReducer({
     reducers: addingReducers,
     removeAfterDestroy: true,
@@ -43,14 +43,16 @@ const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
 
   const errorLoginResponse = useSelector(getLoginError);
 
-  const confirmData = useCallback(() => {
-    dispatch(loginAsyncThunk({
+  const confirmData = useCallback(async () => {
+    const result = await dispatch(loginAsyncThunk({
       loginData: {
         password,
         username: login,
       },
-      onSuccessFn: onConfirm,
     }));
+    if (result.meta.requestStatus === 'fulfilled') {
+      onConfirm();
+    }
   }, [onConfirm, login, password]);
 
   return (
@@ -60,8 +62,8 @@ const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
       </AnimationAlertWrapp>
 
       <div className={formInputsClassName}>
-        <ApInputMemo placeholder='Логин' onInput={loginInputHandler} value={login} isFocused={true}/>
-        <ApInputMemo placeholder='Пароль' onInput={passwordInputHandler} value={password}/>
+        <ApInput placeholder='Логин' onInput={loginInputHandler} value={login} isFocused={true}/>
+        <ApInput placeholder='Пароль' onInput={passwordInputHandler} value={password}/>
       </div>
       <div className={formBtnsClassName}>
         <ButtonMemo onClick={confirmData} bordered={true}>

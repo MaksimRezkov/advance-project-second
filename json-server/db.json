@@ -25,5 +25,13 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "id": 1,
+    "firstname": "Esteban",
+    "lastname": "Ololoev",
+    "age": 25,
+    "country": "Russia",
+    "city": "Moscow",
+    "avatar": "https://mykaleidoscope.ru/x/uploads/posts/2022-09/1663191305_9-mykaleidoscope-ru-p-boston-ssha-dostoprimechatelnosti-10.jpg"
+  }
 }

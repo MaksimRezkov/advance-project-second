@@ -4,6 +4,7 @@ import { ILoginSchema } from './modules/login/loginTypes';
 import { IModalSchema } from './modules/modal/modalTypes';
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { ThunkMiddlewareFor } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
+import { IProfileSchema } from './modules/profile/profileStateTypes';
 
 /** Описание глобального хранилища */
 export interface IStateSchema {
@@ -13,6 +14,7 @@ export interface IStateSchema {
 
   // Async reducers
   loginProcess?: ILoginSchema
+  profile?: IProfileSchema
 }
 
 export type StateSchemaKeys = keyof IStateSchema;

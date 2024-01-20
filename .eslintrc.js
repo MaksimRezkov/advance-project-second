@@ -51,5 +51,6 @@ module.exports = {
         "@typescript-eslint/ban-ts-comment": ["warn"],
         "@typescript-eslint/prefer-ts-expect-error": ["warn"],
         "@typescript-eslint/unbound-method": ["warn"],
+        "@typescript-eslint/no-misused-promises": ["warn"],
     }
 }

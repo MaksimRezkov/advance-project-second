@@ -22,7 +22,6 @@ describe('LoginAsyncThunk', () => {
 
     const result = await action(dispatch, getState, undefined);
     expect(dispatch).toHaveBeenCalledTimes(2);
-    console.log('result in testing', result);
     expect(mockedAxios.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
   });

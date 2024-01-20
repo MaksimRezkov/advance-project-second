@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, PropsWithChildren, useEffect, useRef } from 'react';
+import React, { ChangeEvent, FC, PropsWithChildren, memo, useEffect, useRef } from 'react';
 import styleClasses from './ApInput.module.scss';
 import { classNames } from 'shared/utils/classNames';
 
@@ -11,7 +11,7 @@ interface IApInputProps extends Partial<Omit<HTMLInputElement, 'value' | 'placeh
   onInput?: (value: string, event: ChangeEvent<HTMLInputElement>) => void
 };
 
-const ApInput: FC<IApInputProps> = (props: PropsWithChildren<IApInputProps>) => {
+const ApInput: FC<IApInputProps> = memo((props: PropsWithChildren<IApInputProps>) => {
   const { placeholder = '', value, additionalClasses = [], disable = false, onInput, type, isFocused } = props;
   const className = classNames({
     mainClassName: styleClasses.ApInput,
@@ -40,6 +40,6 @@ const ApInput: FC<IApInputProps> = (props: PropsWithChildren<IApInputProps>) => 
       onInput={onInputHandler}
     />
   );
-};
+});
 
 export { ApInput };

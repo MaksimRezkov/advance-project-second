@@ -9,7 +9,7 @@
     "test-ui-approve": "npx loki approve",
     "dev-build": "webpack --env mode=development",
     "dev-start": "webpack serve --env port=3000 --env mode=development",
-    "dev-api-serve": "node ./json-server/index.js",
+    "dev-api-start": "node ./json-server/index.js",
     "prod-start": "webpack serve --env port=3000 --env mode=production",
     "lint-fix": "eslint --fix --ext .js,.ts,.tsx .",
     "storybook-start": "storybook dev -p 6006 -c ./config/storybook",
