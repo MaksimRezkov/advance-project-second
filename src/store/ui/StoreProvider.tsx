@@ -2,13 +2,15 @@ import { FC } from 'react';
 import { Provider } from 'react-redux';
 import { CreatorReduxStore } from '../config/CreatorReduxStore';
 import { IStateSchema } from '../types/StateSchema';
+import { useNavigate } from 'react-router-dom';
 
 export interface IStoreProviderProps {
   initialState?: IStateSchema
 }
 
 export const StoreProvider: FC<IStoreProviderProps> = ({ children, initialState }) => {
-  const store = CreatorReduxStore(initialState);
+  const navigate = useNavigate();
+  const store = CreatorReduxStore(initialState, navigate);
 
   return (
     <Provider store={store}>

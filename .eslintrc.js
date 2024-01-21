@@ -4,6 +4,10 @@ module.exports = {
         "es2021": true,
         "jest": true,
     },
+    "globals": {
+        _IS_DEV_: true,
+        _API_: true,
+    },
     "extends": [
         "standard-with-typescript",
         "plugin:react/recommended",

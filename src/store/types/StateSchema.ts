@@ -5,6 +5,8 @@ import { IModalSchema } from './modules/modal/modalTypes';
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { ThunkMiddlewareFor } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 import { IProfileSchema } from './modules/profile/profileStateTypes';
+import { AxiosInstance } from 'axios';
+import { NavigateOptions, To } from 'react-router-dom';
 
 /** Описание глобального хранилища */
 export interface IStateSchema {
@@ -28,4 +30,9 @@ export interface IReducerManager {
 
 export interface ReduxStoreWithManager extends EnhancedStore<IStateSchema, AnyAction, [ThunkMiddlewareFor<IStateSchema>]> {
   reducerManager?: IReducerManager
+}
+
+export interface IThunkExtra {
+  apiClient: AxiosInstance
+  navigate: (to: To, options?: NavigateOptions) => void
 }

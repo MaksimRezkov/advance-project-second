@@ -12,3 +12,6 @@ declare module '*.svg' {
   const src: string;
   export default src;
 }
+
+declare const _IS_DEV_: boolean;
+declare const _API_: string;

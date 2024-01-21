@@ -5,12 +5,12 @@ import { WithApp } from 'app/WithApp';
 import { StoreProvider } from 'store';
 
 render(
-  <StoreProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <StoreProvider>
       <ContextProvider>
         <WithApp/>
       </ContextProvider>
-    </BrowserRouter>
-  </StoreProvider>,
+    </StoreProvider>
+  </BrowserRouter>,
   document.querySelector('.root'),
 );
