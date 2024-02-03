@@ -19,15 +19,19 @@ export function useAddAsyncReducer (params: IUseAddAsyncReducerParams): void {
   const dispatch = useDispatch();
   useEffect(() => {
     reducers.forEach(({ reducer, reducerKey }) => {
-      store.reducerManager.add(reducerKey, reducer);
-      dispatch({ type: `@INIT ${reducerKey} reducer` });
+      if (store?.reducerManager) {
+        store.reducerManager.add(reducerKey, reducer);
+        dispatch({ type: `@INIT ${reducerKey} reducer` });
+      }
     });
 
     return () => {
       if (removeAfterDestroy) {
         reducers.forEach(({ reducerKey }) => {
-          store.reducerManager.remove(reducerKey);
-          dispatch({ type: `@DESTROY ${reducerKey} reducer` });
+          if (store.reducerManager) {
+            store.reducerManager.remove(reducerKey);
+            dispatch({ type: `@DESTROY ${reducerKey} reducer` });
+          }
         });
       }
     };

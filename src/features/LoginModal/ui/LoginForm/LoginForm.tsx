@@ -11,6 +11,7 @@ import { AnimationAlertWrapp, ErrorAlert } from 'shared/Alert';
 import { loginActions, loginReducer } from 'features/LoginModal/model/slice/loginSlice';
 import { AddedReducerConf, useAddAsyncReducer } from 'shared/lib/hooks/useAddAsyncReducer';
 import { useAppDispatch } from 'store/lib/hooks/useAppDispatch';
+import { DEFAULT_ERR_TEXT } from 'shared/const/messages';
 
 const ButtonMemo = memo(Button);
 
@@ -58,7 +59,7 @@ const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
   return (
     <div className={formClassName}>
       <AnimationAlertWrapp isHidden={!errorLoginResponse}>
-        <ErrorAlert errorText={errorLoginResponse}/>
+        <ErrorAlert errorText={errorLoginResponse || DEFAULT_ERR_TEXT}/>
       </AnimationAlertWrapp>
 
       <div className={formInputsClassName}>

@@ -5,6 +5,6 @@ import { localStorageService } from 'shared/utils/LocalStorage/LocalStorageServi
 export const apiClient = axios.create({
   baseURL: _IS_DEV_ ? 'http://localhost:8000/' : '',
   headers: {
-    authorization: localStorageService.getItem(USER_TOKEN_KEY),
+    authorization: localStorageService.getItem(USER_TOKEN_KEY) || '',
   },
 });

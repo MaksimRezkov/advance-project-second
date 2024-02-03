@@ -5,7 +5,11 @@ import { buildStylesLoader } from '../common/buildStylesLoader';
 import { RuleSetRule } from 'webpack';
 
 /** Конфигурация вебпака для среды сторибука, у него она отдельная, дополняем дефолтные настройки */
-export default ({ config }: { config: WebpackConfiguration }): WebpackConfiguration => {
+export default ({ config }: { config: WebpackConfiguration }): WebpackConfiguration | undefined => {
+  if (!config?.resolve || !config?.module) {
+    console.warn('Not parameters in webpack config of storybook');
+    return;
+  }
   const paths: IBuildPaths = {
     bundleFileName: '',
     entry: '',
@@ -14,9 +18,9 @@ export default ({ config }: { config: WebpackConfiguration }): WebpackConfigurat
     template: '',
   };
 
-  config.resolve.modules.push(paths.moduleResolve);
-  config.resolve.extensions.push('.ts', 'tsx');
-  config.module.rules.push(buildStylesLoader(true));
+  config.resolve?.modules?.push(paths.moduleResolve);
+  config.resolve?.extensions?.push('.ts', 'tsx');
+  config.module?.rules?.push(buildStylesLoader(true));
 
   // eslint-disable-next-line
   // @ts-ignore

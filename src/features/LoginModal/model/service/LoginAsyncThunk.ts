@@ -5,7 +5,6 @@ import { authUserActions } from 'entityes/AuthUser';
 import { localStorageService } from 'shared/utils/LocalStorage/LocalStorageService';
 import { USER_TOKEN_KEY } from 'shared/const/LocalStorage';
 import { IThunkExtra } from 'store/types/StateSchema';
-import axios from 'axios';
 import { RoutePaths } from 'app/router/RouterConfig';
 
 export interface ILoginThunkParams {
@@ -33,6 +32,7 @@ export const loginAsyncThunk = createAsyncThunk<
       // extra.navigate(RoutePaths.profile);
       return data;
     } catch (error) {
+      // @ts-ignore
       if (error?.response?.status === 403) {
         return rejectWithValue('Пользователь не найден');
       }

@@ -3,7 +3,7 @@ import { ThemeContext, ThemeValueType } from './Context';
 import { LOCAL_STORAGE_THEME_KEY } from 'shared/const/LocalStorage';
 
 export interface IUseThemeResult {
-  themeValue: ThemeValueType
+  themeValue: ThemeValueType | undefined
   toggleThemeValue: () => void
 }
 
@@ -15,7 +15,7 @@ export function useThemeContext (): IUseThemeResult {
   /** Ссылка на функцию, использующую обновление состояния и вызываемую где-либо в приложении */
   const toggleThemeValue = () => {
     const newThemeValue: ThemeValueType = themeValue === 'light' ? 'dark' : 'light';
-    setThemeValue(newThemeValue);
+    setThemeValue?.(newThemeValue);
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newThemeValue);
   };
 

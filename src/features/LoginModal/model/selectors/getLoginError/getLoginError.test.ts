@@ -7,9 +7,10 @@ describe('getLoginError', () => {
     const state: DeepPartial<IStateSchema> = {
       loginProcess: {
         error: 'Error',
+        isLoading: false,
       },
     };
 
-    expect(getLoginError(state as IStateSchema)).toBe(state.loginProcess.error);
+    expect(getLoginError(state as IStateSchema)).toBe(state?.loginProcess?.error);
   });
 });

@@ -1,3 +1,3 @@
-export class TestAsyncThunk {
-  constructor () {}
-}
+// export class TestAsyncThunk {
+//   constructor () {}
+// }

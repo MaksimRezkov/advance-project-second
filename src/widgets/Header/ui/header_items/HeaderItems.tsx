@@ -1,11 +1,10 @@
 import { IAppPathRouteProps, RouteConfig, RoutePaths } from 'app/router/RouterConfig';
 import { FC, memo, useMemo } from 'react';
-import { LinkButton } from 'shared/LinkButton';
 import styleClasses from './HeaderItems.module.scss';
 import { HeaderLinkItem } from '../HeaderLinkItem/HeaderLinkItem';
 
 export interface IHeaderItemsProps {
-  authUserId: number
+  authUserId?: number
 }
 
 export const HeaderItems: FC<IHeaderItemsProps> = memo(({ authUserId }) => {
@@ -19,7 +18,7 @@ export const HeaderItems: FC<IHeaderItemsProps> = memo(({ authUserId }) => {
     <div className={styleClasses.headerItems}>
       {
         filteredLinks
-          .map(conf => <HeaderLinkItem key={conf.path} path={conf.path} title={conf.title}/>)
+          .map(conf => <HeaderLinkItem key={conf.path} path={conf.path} title={conf.title || ''}/>)
       }
     </div>
   );

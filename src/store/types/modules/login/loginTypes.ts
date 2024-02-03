@@ -1,6 +1,6 @@
 export interface ILoginSchema {
-  error: string | null
-  isLoading: boolean
+  error?: string | null
+  isLoading?: boolean
 }
 
 export interface ILoginData {

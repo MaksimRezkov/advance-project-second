@@ -8,7 +8,7 @@ export const App: FC = ({ children }) => {
   const { themeValue } = useThemeContext();
   const appClassNames: IClassNamesParams = {
     mainClassName: 'app',
-    additional: [themeValue],
+    additional: [themeValue || ''],
   };
   useCheckAuthUser();
 

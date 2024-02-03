@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, PropsWithChildren, memo, useEffect, useRef } from 'react';
+import React, { ChangeEvent, FC, LegacyRef, PropsWithChildren, memo, useEffect, useRef } from 'react';
 import styleClasses from './ApInput.module.scss';
 import { classNames } from 'shared/utils/classNames';
 
@@ -21,17 +21,17 @@ const ApInput: FC<IApInputProps> = memo((props: PropsWithChildren<IApInputProps>
 
   useEffect(() => {
     if (isFocused) {
-      ref.current.focus();
+      ref.current?.focus();
     }
   }, []);
 
   const onInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    onInput(event.target.value, event);
+    onInput?.(event.target.value, event);
   };
 
   return (
     <input
-      ref={ref}
+      ref={ref as LegacyRef<HTMLInputElement> | undefined}
       type={type}
       className={className}
       placeholder={placeholder}

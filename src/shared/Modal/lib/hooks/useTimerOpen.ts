@@ -4,16 +4,17 @@ type TimerId = ReturnType<typeof setTimeout>;
 
 export interface IUseTimerOpen {
   isModalOpenedClass: boolean
-  setModalOpenedClass: ReturnType<typeof useState<boolean>>[1]
+  setModalOpenedClass: React.Dispatch<React.SetStateAction<boolean>>
   addTimer: ReturnType<typeof useCallback>
 }
 
 export const useTimerOpen: () => IUseTimerOpen = () => {
-  const timerOpenIds: ReturnType<typeof useRef<TimerId[]>> = useRef([]);
+  const timerOpenIds = useRef<ReturnType<typeof useRef<TimerId[]>> | []>([]);
   const [isModalOpenedClass, setModalOpenedClass] = useState(false);
 
   const addTimer = useCallback<(callback: () => void, delay?: number) => void>((callback: () => void, delay = 0) => {
-    timerOpenIds.current.push(setTimeout(callback, delay));
+    if (!timerOpenIds.current) timerOpenIds.current = [];
+    (timerOpenIds.current as TimerId[]).push(setTimeout(callback, delay));
   }, []);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export const useTimerOpen: () => IUseTimerOpen = () => {
 
     return () => {
       /** Очитска всех web api's уничтоженного компонента */
-      timerOpenIds.current.forEach(timerId => {
+      (timerOpenIds.current as TimerId[]).forEach((timerId: TimerId) => {
         if (timerId) {
           clearTimeout(timerId);
         }

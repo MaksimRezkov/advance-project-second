@@ -37,7 +37,7 @@ export const Modal: FC<IModalProps> = ({ children, title, isClosing, onClose }) 
         className={classNames({
           mainClassName: styleClasses.modalBody,
           mods: { [styleClasses.modalOpened]: isModalOpenedClass },
-          additional: [themeValue],
+          additional: [themeValue || ''],
         })}
         onClick={(e) => { e.stopPropagation(); }}
       >

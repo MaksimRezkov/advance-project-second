@@ -1,7 +1,7 @@
 export interface IClassNamesParams {
   mainClassName: string
   additional?: string[]
-  mods?: Record<string, boolean>
+  mods?: Record<string, boolean | undefined>
 }
 
 export function classNames (params: IClassNamesParams): string {

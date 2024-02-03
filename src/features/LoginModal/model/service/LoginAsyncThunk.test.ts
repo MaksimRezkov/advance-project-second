@@ -17,12 +17,17 @@ describe('LoginAsyncThunk', () => {
 
   test('failed login', async () => {
     // Указываем что будет возвращать метод post
-    mockedAxios.post.mockReturnValue(Promise.reject(''));
     const action = loginAsyncThunk({ loginData: { password: '123', username: 'admin' } });
 
-    const result = await action(dispatch, getState, undefined);
+    const extraArgument = {
+      apiClient: mockedAxios,
+      navigate: jest.fn(),
+    };
+
+    const result = await action(dispatch, getState, extraArgument);
+    extraArgument.apiClient.post.mockReturnValue(Promise.reject('').catch(e => console.log(e)));
     expect(dispatch).toHaveBeenCalledTimes(2);
-    expect(mockedAxios.post).toHaveBeenCalled();
+    expect(extraArgument.apiClient.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
   });
 });
