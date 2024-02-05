@@ -41,6 +41,7 @@ module.exports = {
         "@typescript-eslint/explicit-function-return-type": ["warn"],
         "@typescript-eslint/no-empty-interface": ["off"],
         "react/prop-types": ["warn"],
+        "@typescript-eslint/no-floating-promises": ["warn"],
 
         'max-len': 'off',
         'semi': 'off',

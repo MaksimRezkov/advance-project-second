@@ -1,27 +1,32 @@
 import { FC } from 'react';
 import { classNames } from 'shared/utils/classNames';
-import styleClasses from './ProfilePage.module.scss';
 import { useCheckAuth } from '../lib/hooks/useCheckAuth';
-import { AddedReducerConf, useAddAsyncReducer } from 'shared/lib/hooks/useAddAsyncReducer';
-import { profileReducer } from 'entityes/Profile';
+import { EditingProfileCard } from 'features/EditingProfileCard';
+import { useAppSelector } from 'store/lib/hooks/useAppSelector';
+import { getProfileData } from 'features/EditingProfileCard/model/selectors/getProfileData';
 
-const addingReducers: AddedReducerConf[] = [{ reducer: profileReducer, reducerKey: 'profile' }];
+import styleClasses from './ProfilePage.module.scss';
+import { getAuthUserId } from 'entityes/AuthUser';
 
 const ProfilePage: FC = () => {
-  useCheckAuth();
+  const { isAuth } = useCheckAuth();
+  const profileData = useAppSelector(getProfileData);
+  const authUserId = useAppSelector(getAuthUserId);
 
-  useAddAsyncReducer({
-    removeAfterDestroy: true,
-    reducers: addingReducers,
-  });
+  const title = profileData ? `${profileData?.firstname} ${profileData?.lastname}` : '';
 
   const classNamePage = classNames({
     mainClassName: styleClasses.page,
   });
 
+  if (!isAuth) {
+    return (<></>);
+  }
+
   return (
     <div className={classNamePage}>
-      <h1>Account page</h1>
+      <h1 className={styleClasses.titlePage}>{ title }</h1>
+      {authUserId && <EditingProfileCard userId={authUserId}/>}
     </div>
   );
 };

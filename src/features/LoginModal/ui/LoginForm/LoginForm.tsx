@@ -63,8 +63,8 @@ const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
       </AnimationAlertWrapp>
 
       <div className={formInputsClassName}>
-        <ApInput placeholder='Логин' onInput={loginInputHandler} value={login} isFocused={true}/>
-        <ApInput placeholder='Пароль' onInput={passwordInputHandler} value={password}/>
+        <ApInput label={login} placeholder='Логин' onInput={loginInputHandler} value={login} isFocused={true}/>
+        <ApInput label={password} placeholder='Пароль' onInput={passwordInputHandler} value={password}/>
       </div>
       <div className={formBtnsClassName}>
         <ButtonMemo onClick={confirmData} bordered={true}>

@@ -32,7 +32,11 @@ export interface ReduxStoreWithManager extends EnhancedStore<IStateSchema, AnyAc
   reducerManager?: IReducerManager
 }
 
-export interface IThunkExtra {
-  apiClient: AxiosInstance
-  navigate: (to: To, options?: NavigateOptions) => void
+export interface IThunkConfig<T = string> {
+  extra: {
+    apiClient: AxiosInstance
+    navigate?: (to: To, options?: NavigateOptions) => void
+  }
+  state: IStateSchema
+  rejectValue: T
 }

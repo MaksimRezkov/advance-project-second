@@ -1,7 +1,19 @@
+.apInputWrapp {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.apLabel {
+  width: 20%;
+}
+
 .ApInput {
   padding: 10px;
   border-radius: 3px;
   border: 1px solid pink;
   color: var(--color-main);
   background-color: var(--bg-color-content);
+  flex-grow: 1;
 }

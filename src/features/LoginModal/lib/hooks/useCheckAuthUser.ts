@@ -5,7 +5,7 @@ import { localStorageService } from 'shared/utils/LocalStorage/LocalStorageServi
 
 export function useCheckAuthUser (): void {
   const authUserString = localStorageService.getItem(USER_TOKEN_KEY);
-  const authUser = JSON.parse(authUserString || '');
+  const authUser = authUserString && JSON.parse(authUserString);
   if (authUser?.id) {
     const dispatch = useDispatch();
     dispatch(authUserActions.setAuthUser(authUser));

@@ -18,6 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const InputLight: Story = {
   args: {
     placeholder: 'Story Input',
+    label: 'testField',
   },
   decorators: [
     ThemeDecorator('light'),
@@ -28,6 +29,7 @@ export const InputDisabled: Story = {
   args: {
     placeholder: 'Story Input Disabled',
     disable: true,
+    label: 'testField',
   },
   decorators: [
     ThemeDecorator('light'),
@@ -37,6 +39,7 @@ export const InputDisabled: Story = {
 export const InputDark: Story = {
   args: {
     placeholder: 'Story Input',
+    label: 'testField',
   },
   decorators: [
     ThemeDecorator('dark'),

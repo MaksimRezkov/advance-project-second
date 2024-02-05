@@ -1,5 +1,6 @@
 import { StoreProvider } from './ui/StoreProvider';
 import { CreatorReduxStore, AppDispatch } from './config/CreatorReduxStore';
+import { IThunkConfig } from './types/StateSchema';
 
 export {
   StoreProvider,
@@ -8,4 +9,5 @@ export {
 
 export type {
   AppDispatch,
+  IThunkConfig,
 };

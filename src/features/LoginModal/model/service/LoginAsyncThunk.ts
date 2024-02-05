@@ -4,8 +4,7 @@ import { ILoginData } from 'store/types/modules/login/loginTypes';
 import { authUserActions } from 'entityes/AuthUser';
 import { localStorageService } from 'shared/utils/LocalStorage/LocalStorageService';
 import { USER_TOKEN_KEY } from 'shared/const/LocalStorage';
-import { IThunkExtra } from 'store/types/StateSchema';
-import { RoutePaths } from 'app/router/RouterConfig';
+import { IThunkConfig } from 'store';
 
 export interface ILoginThunkParams {
   loginData: ILoginData
@@ -14,13 +13,13 @@ export interface ILoginThunkParams {
 
 export const loginAsyncThunk = createAsyncThunk<
     IAuthUser,
-    ILoginThunkParams
+    ILoginThunkParams,
+    IThunkConfig
   >(
   'loginProcess/loginByUsername',
   async (params, thunkApi) => {
     const { rejectWithValue, dispatch, extra } = thunkApi;
     try {
-      // @ts-ignore
       const response = await extra.apiClient.post<IAuthUser>('login', params.loginData);
       const { data } = response;
       if (!data) {
@@ -28,11 +27,8 @@ export const loginAsyncThunk = createAsyncThunk<
       }
       dispatch(authUserActions.setAuthUser(data));
       localStorageService.setItem(USER_TOKEN_KEY, JSON.stringify(data));
-      // @ts-ignore
-      // extra.navigate(RoutePaths.profile);
       return data;
-    } catch (error) {
-      // @ts-ignore
+    } catch (error: any) {
       if (error?.response?.status === 403) {
         return rejectWithValue('Пользователь не найден');
       }

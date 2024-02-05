@@ -1,6 +1,8 @@
-import { profileActions, profileReducer } from './model/slice/profileSlice';
+import { profileActions, profileReducer } from '../../features/EditingProfileCard/model/slice/profileSlice';
+import { ProfileCard } from './ui/ProfileCard';
 
 export {
   profileActions,
   profileReducer,
+  ProfileCard,
 };
