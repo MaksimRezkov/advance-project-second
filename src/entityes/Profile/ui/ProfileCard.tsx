@@ -3,6 +3,8 @@ import { ApInput } from 'shared/input';
 import { IProfileData } from 'store/types/modules/profile/profileStateTypes';
 
 import styleClasses from './ProfileCard.module.scss';
+import { Avatar } from 'shared/Avatar/ui/Avatar';
+import { classNames } from 'shared/utils/classNames';
 
 type ProfileInputHandler = (value: string) => void;
 
@@ -85,8 +87,12 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           />))
         }
       </div>
-      <div className={styleClasses.profileImgWrap}>
-        <img className={styleClasses.profileImg} src={profileData.avatar} alt='No photo'></img>
+      <div className={classNames({ mainClassName: styleClasses.profileImgWrap, additional: ['flex-all-center'] })}>
+        <Avatar
+          src={profileData.avatar}
+          size={250}
+        />
+        {/* <img className={styleClasses.profileImg} src={profileData.avatar} alt='No photo'></img> */}
       </div>
     </div>
   );
