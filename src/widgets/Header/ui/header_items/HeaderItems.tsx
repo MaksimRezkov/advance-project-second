@@ -9,8 +9,8 @@ export interface IHeaderItemsProps {
 
 export const HeaderItems: FC<IHeaderItemsProps> = memo(({ authUserId }) => {
   const filteredLinks = useMemo(() => {
-    return RouteConfig.filter((conf: IAppPathRouteProps) => {
-      return conf.path !== RoutePaths.not_found && (!authUserId ? conf.path !== RoutePaths.profile : true);
+    return RouteConfig.filter((route: IAppPathRouteProps) => {
+      return !route.hiddenLink && (authUserId || !route.authOnly);
     });
   }, [RoutePaths, RouteConfig, authUserId]);
 

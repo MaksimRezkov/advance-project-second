@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { Provider } from 'react-redux';
 import { CreatorReduxStore } from '../config/CreatorReduxStore';
 import { IStateSchema } from '../types/StateSchema';
@@ -10,7 +10,7 @@ export interface IStoreProviderProps {
 
 export const StoreProvider: FC<IStoreProviderProps> = ({ children, initialState }) => {
   const navigate = useNavigate();
-  const store = CreatorReduxStore(initialState, navigate);
+  const store = useMemo(() => CreatorReduxStore(initialState, navigate), []);
 
   return (
     <Provider store={store}>

@@ -28,6 +28,8 @@ export const RoutePaths: Record<RouteNames, string> = {
 
 export interface IAppPathRouteProps extends PathRouteProps {
  title?: string
+ authOnly?: boolean
+ hiddenLink?: boolean
 }
 
 export const RouteConfig: IAppPathRouteProps[] = [
@@ -45,10 +47,12 @@ export const RouteConfig: IAppPathRouteProps[] = [
     path: RoutePaths[RouteNames.PROFILE],
     element: <ProfilePage/>,
     title: RouteTitles[RouteNames.PROFILE],
+    authOnly: true,
   },
 
   {
     path: RoutePaths[RouteNames.NOT_FOUND],
     element: <NotFound/>,
+    hiddenLink: true,
   },
 ];
