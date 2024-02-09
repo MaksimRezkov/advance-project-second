@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'store';
-import { IProfileData } from 'store/types/modules/profile/profileStateTypes';
-import { profileActions } from '../slice/profileSlice';
+import { IProfileData } from 'entityes/Profile';
 
 export interface IProfileThunkParams {
   id: number

@@ -4,6 +4,7 @@ import { getProfileError } from './getProfileError';
 import { getProfileLoading } from './getProfileLoading';
 import { getProfileFormData } from './getProdileFormData';
 import { getProfileEditing } from './getProfileEditing';
+import { getProfileIsValidChange } from './getProfileIsValidChange';
 
 export const getProfileStateFields = createSelector(
   getProfileData,
@@ -11,17 +12,20 @@ export const getProfileStateFields = createSelector(
   getProfileError,
   getProfileLoading,
   getProfileEditing,
+  getProfileIsValidChange,
   (
     data,
     formData,
     error,
     isLoading,
     isEdit,
+    isValidChange,
   ) => ({
     data,
     formData,
     error,
     isLoading,
     isEdit,
+    isValidChange,
   }),
 );

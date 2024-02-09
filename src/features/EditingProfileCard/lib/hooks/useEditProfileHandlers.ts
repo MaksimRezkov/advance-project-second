@@ -1,20 +1,54 @@
-import { profileActions } from 'entityes/Profile';
+import {
+  profileActions,
+  validateAge,
+  validateCountry,
+  validateFirstname,
+  validateLastname,
+  ProfileFieldNames,
+  IProfileData,
+} from 'entityes/Profile';
 import { ProfilePutAsyncThunk } from 'features/EditingProfileCard/model/services/ProfilePutAsyncThunk';
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { AppDispatch } from 'store';
-import { IProfileData } from 'store/types/modules/profile/profileStateTypes';
 
 interface IUseEdithProfileHandlersArgs {
   dispatch: AppDispatch
   isEdit?: boolean
+  isValidChange?: boolean
   formData: IProfileData | null | undefined
+  setValidateErorrsMap: React.Dispatch<React.SetStateAction<Record<string, string>>>
 }
 
+interface IValidateFnParams<V> {
+  value: V
+  validateFn: (value: V) => string | undefined
+  fieldName: string
+  setValidateErorrsMap: React.Dispatch<React.SetStateAction<Record<string, string>>>
+}
+
+const isValidCheck: <V>(params: IValidateFnParams<V>) => boolean = <V>(params: IValidateFnParams<V>) => {
+  const validateErrMsg = params.validateFn(params.value);
+  params.setValidateErorrsMap((oldRecords) => {
+    return {
+      ...oldRecords,
+      [params.fieldName]: validateErrMsg || '',
+    };
+  });
+
+  if (validateErrMsg) {
+    return false;
+  }
+
+  return true;
+};
+
 export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs) => {
-  const { dispatch, formData, isEdit } = params;
+  const { dispatch, formData, isEdit, setValidateErorrsMap, isValidChange } = params;
 
   const onInputAge = useCallback((value: string) => {
-    dispatch(profileActions.setAge(Number(value || 0)));
+    const isValid = isValidCheck<number>({ value: +value, validateFn: validateAge, fieldName: ProfileFieldNames.age, setValidateErorrsMap });
+    dispatch(profileActions.setValidChange(isValid));
+    dispatch(profileActions.setAge(+value));
   }, [dispatch, profileActions]);
 
   const onInputAvatar = useCallback((value: string) => {
@@ -26,14 +60,20 @@ export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs)
   }, [dispatch, profileActions]);
 
   const onInputCountry = useCallback((value: string) => {
+    const isValid = isValidCheck<string>({ value, validateFn: validateCountry, fieldName: ProfileFieldNames.country, setValidateErorrsMap });
+    dispatch(profileActions.setValidChange(isValid));
     dispatch(profileActions.setCountry(value));
   }, [dispatch, profileActions]);
 
   const onInputFirstname = useCallback((value: string) => {
+    const isValid = isValidCheck<string>({ value, validateFn: validateFirstname, fieldName: ProfileFieldNames.firstname, setValidateErorrsMap });
+    dispatch(profileActions.setValidChange(isValid));
     dispatch(profileActions.setFirstname(value));
   }, [dispatch, profileActions]);
 
   const onInputLastname = useCallback((value: string) => {
+    const isValid = isValidCheck<string>({ value, validateFn: validateLastname, fieldName: ProfileFieldNames.lastname, setValidateErorrsMap });
+    dispatch(profileActions.setValidChange(isValid));
     dispatch(profileActions.setLastname(value));
   }, [dispatch, profileActions]);
 
@@ -44,15 +84,16 @@ export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs)
   const onEditBtnClick = useCallback(() => {
     if (isEdit) { // если отмена редактирования
       dispatch(profileActions.cancelEditing());
+      setValidateErorrsMap({});
     }
     dispatch(profileActions.toggleEditing());
   }, [dispatch, profileActions, isEdit]);
 
   const onSaveBtnClick = useCallback(() => {
-    if (formData) {
+    if (formData && isValidChange) {
       dispatch(ProfilePutAsyncThunk(formData));
     }
-  }, [dispatch, profileActions, isEdit]);
+  }, [dispatch, formData, isValidChange]);
 
   return {
     onInputAge,

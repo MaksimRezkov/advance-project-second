@@ -10,6 +10,7 @@ const initialState: IProfileSchema = {
   isLoading: false,
   isEdit: false,
   isChange: false,
+  isValidChange: true,
 };
 
 const profileSlice = createSlice({
@@ -27,6 +28,10 @@ const profileSlice = createSlice({
           ...state.profileData,
         };
       }
+    },
+
+    setValidChange: (state, action: PayloadAction<boolean>) => {
+      state.isValidChange = action.payload;
     },
 
     setAge: (state, action: PayloadAction<number>) => {

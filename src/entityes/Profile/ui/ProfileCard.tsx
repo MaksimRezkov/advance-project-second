@@ -1,16 +1,17 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { ApInput } from 'shared/input';
-import { IProfileData } from 'store/types/modules/profile/profileStateTypes';
 
 import styleClasses from './ProfileCard.module.scss';
 import { Avatar } from 'shared/Avatar/ui/Avatar';
 import { classNames } from 'shared/utils/classNames';
+import { ProfileFieldsTranslate, IProfileData } from '../constants/profileFieldNames';
 
 type ProfileInputHandler = (value: string) => void;
 
 export interface IProfileCardProps {
   profileData: IProfileData
   readonly?: boolean
+  validateErorrsMap?: Record<string, string>
 
   onInputAge?: ProfileInputHandler
   onInputAvatar?: ProfileInputHandler
@@ -21,7 +22,6 @@ export interface IProfileCardProps {
   onInputUsername?: ProfileInputHandler
 }
 
-type ProfilePlaceholderMap = Record<string, string>;
 type ProfileInputsHandlersMap = Record<string, ProfileInputHandler | undefined>;
 
 export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
@@ -29,6 +29,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const {
     profileData,
     readonly = true,
+    validateErorrsMap,
     onInputAge,
     onInputAvatar,
     onInputCity,
@@ -41,16 +42,6 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const filedsList = useMemo(() => Object.keys(profileData).filter((field) => {
     const filedsFiltersConfig = new Set(['id', 'password', 'avatar']);
     return !filedsFiltersConfig.has(field);
-  }), [profileData]);
-
-  const placeholdersMap = useMemo<ProfilePlaceholderMap>(() => ({
-    age: 'Возраст',
-    avatar: 'Аватар',
-    city: 'Город',
-    country: 'Страна',
-    firstname: 'Имя',
-    lastname: 'Фамилия',
-    username: 'Логин',
   }), [profileData]);
 
   const onInputsMap = useMemo<ProfileInputsHandlersMap>(() => ({
@@ -76,15 +67,18 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
       <div className={styleClasses.profileFields}>
         {
           (filedsList).map((fieldName) => (
-          <ApInput
-            key={fieldName}
-            label={fieldName}
-            value={profileData[fieldName as keyof IProfileData]}
-            placeholder={placeholdersMap[fieldName]}
-            disable={readonly}
-            isShowLabel={true}
-            onInput={onInputsMap[fieldName]}
-          />))
+            <div key={fieldName}>
+              <ApInput
+                label={fieldName}
+                value={profileData[fieldName as keyof IProfileData]}
+                placeholder={ProfileFieldsTranslate[fieldName]}
+                disable={readonly}
+                isShowLabel={true}
+                onInput={onInputsMap[fieldName]}
+              />
+              {validateErorrsMap?.[fieldName] && <span className={styleClasses.errFieldMsg}>{validateErorrsMap[fieldName]}</span>}
+            </div>
+          ))
         }
       </div>
       <div className={classNames({ mainClassName: styleClasses.profileImgWrap, additional: ['flex-all-center'] })}>
@@ -92,7 +86,6 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           src={profileData.avatar}
           size={250}
         />
-        {/* <img className={styleClasses.profileImg} src={profileData.avatar} alt='No photo'></img> */}
       </div>
     </div>
   );

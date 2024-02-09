@@ -1,5 +1,5 @@
 import { ProfileCard, profileActions, profileReducer } from 'entityes/Profile';
-import { FC, memo, useCallback, useEffect } from 'react';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { AddedReducerConf, useAddAsyncReducer } from 'shared/lib/hooks/useAddAsyncReducer';
 import { useAppDispatch } from 'store/lib/hooks/useAppDispatch';
 import { ProfileGetAsyncThunk } from '../model/services/ProfileGetAsyncThunk';
@@ -27,8 +27,9 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
   });
 
   const dispatch = useAppDispatch();
-  const { data, formData, error, isLoading, isEdit } = useAppSelector(getProfileStateFields);
-  const handlers = useEditProfileCardHandlres({ dispatch, formData, isEdit });
+  const { data, formData, error, isLoading, isEdit, isValidChange } = useAppSelector(getProfileStateFields);
+  const [validateErorrsMap, setValidateErorrsMap] = useState<Record<string, string>>({});
+  const handlers = useEditProfileCardHandlres({ dispatch, formData, isEdit, setValidateErorrsMap, isValidChange: !!isValidChange });
   const editBtnText = isEdit ? 'Отменить' : 'Редактировать';
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
     return (
       <div className={styleClasses.editingProfile}>
         <Button onClick={handlers.onEditBtnClick} bordered={true}>{editBtnText}</Button>
-        {isEdit && <Button onClick={handlers.onSaveBtnClick} bordered={true}>Сохранить</Button>}
+        {isEdit && <Button onClick={handlers.onSaveBtnClick} bordered={true} disabled={!isValidChange}>Сохранить</Button>}
 
         <ProfileCard
           profileData={formData}
@@ -59,6 +60,7 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
           onInputLastname={handlers.onInputLastname}
           onInputUsername={handlers.onInputUsername}
           readonly={!isEdit}
+          validateErorrsMap={validateErorrsMap}
         ></ProfileCard>
       </div>
     );
