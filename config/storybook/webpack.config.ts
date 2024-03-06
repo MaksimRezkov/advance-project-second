@@ -2,7 +2,7 @@ import path from 'path';
 import { IBuildPaths } from '../build/types';
 import { WebpackConfiguration } from 'webpack-dev-server';
 import { buildStylesLoader } from '../common/buildStylesLoader';
-import { RuleSetRule } from 'webpack';
+import webpack, { RuleSetRule } from 'webpack';
 
 /** Конфигурация вебпака для среды сторибука, у него она отдельная, дополняем дефолтные настройки */
 export default ({ config }: { config: WebpackConfiguration }): WebpackConfiguration | undefined => {
@@ -16,6 +16,11 @@ export default ({ config }: { config: WebpackConfiguration }): WebpackConfigurat
     moduleResolve: path.resolve(__dirname, '..', '..', 'src'),
     output: '',
     template: '',
+  };
+
+  const definePluginOpts = {
+    _IS_DEV_: true,
+    // _API_: buildOptions.apiUrl,
   };
 
   config.resolve?.modules?.push(paths.moduleResolve);
@@ -37,6 +42,8 @@ export default ({ config }: { config: WebpackConfiguration }): WebpackConfigurat
     issuer: /\.[jt]sx?$/,
     use: ['@svgr/webpack'],
   });
+
+  config.plugins?.push(new webpack.DefinePlugin(definePluginOpts));
 
   return config;
 };

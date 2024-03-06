@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Provider } from 'react-redux';
 import { CreatorReduxStore } from '../config/CreatorReduxStore';
 import { IStateSchema } from '../types/StateSchema';

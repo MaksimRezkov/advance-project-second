@@ -4,20 +4,18 @@ import { classNames } from 'shared/utils/classNames';
 import CloseBtnIcon from 'shared/assets/icons/close-btn.svg';
 import { Button } from 'shared/Button/ui/Button';
 import { useKeydownHandlers } from '../lib/hooks/useKeydownHandlers';
-import { useThemeContext } from 'app/lib/context/useThemeContext';
 import { useCloseModal } from '../lib/hooks/useCloseModal';
 
 export interface IModalProps {
-  title?: string
+  title?: string;
   /** Флаг для закрытия модалки с анимацией */
-  isClosing?: boolean
-  onClose?: () => void
+  isClosing?: boolean;
+  onClose?: () => void;
 }
 
 const ButtonMemo = memo(Button);
 
 export const Modal: FC<IModalProps> = ({ children, title, isClosing, onClose }) => {
-  const { themeValue } = useThemeContext();
   const CloseBtnIconMemo = useMemo(() => CloseBtnIcon, []);
   const { closeModal, isModalOpenedClass } = useCloseModal(onClose);
   useKeydownHandlers(closeModal);
@@ -37,7 +35,6 @@ export const Modal: FC<IModalProps> = ({ children, title, isClosing, onClose }) 
         className={classNames({
           mainClassName: styleClasses.modalBody,
           mods: { [styleClasses.modalOpened]: isModalOpenedClass },
-          additional: [themeValue || ''],
         })}
         onClick={(e) => { e.stopPropagation(); }}
       >

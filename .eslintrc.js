@@ -37,10 +37,10 @@ module.exports = {
     "rules": {
         "react/react-in-jsx-scope": ["off"],
         "react/display-name": ["off"],
+        "react/prop-types": ["off"],
         "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
         "@typescript-eslint/explicit-function-return-type": ["warn"],
         "@typescript-eslint/no-empty-interface": ["off"],
-        "react/prop-types": ["warn"],
         "@typescript-eslint/no-floating-promises": ["warn"],
 
         'max-len': 'off',
@@ -57,5 +57,20 @@ module.exports = {
         "@typescript-eslint/prefer-ts-expect-error": ["warn"],
         "@typescript-eslint/unbound-method": ["warn"],
         "@typescript-eslint/no-misused-promises": ["warn"],
+        "@typescript-eslint/array-type": ["off"],
+        "@typescript-eslint/member-delimiter-style": [
+            "error",
+            {
+                "multiline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                },
+                "singleline": {
+                    "delimiter": "semi",
+                    "requireLast": false
+                },
+                "multilineDetection": "brackets"
+            }
+        ],
     }
 }

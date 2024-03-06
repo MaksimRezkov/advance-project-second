@@ -1,0 +1,24 @@
+.appSelectBody {
+  display: flex;
+  flex-direction: column;
+};
+
+.inlineLabel {
+  flex-direction: row;
+}
+
+.gapS {
+  gap: 10px;
+}
+
+.gapM {
+  gap: 15px;
+}
+
+.gapL {
+  gap: 20px;
+}
+
+.gapXL {
+  gap: 25px;
+}
