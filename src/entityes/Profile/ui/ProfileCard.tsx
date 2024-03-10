@@ -5,21 +5,25 @@ import styleClasses from './ProfileCard.module.scss';
 import { Avatar } from 'shared/Avatar/ui/Avatar';
 import { classNames } from 'shared/utils/classNames';
 import { ProfileFieldsTranslate, IProfileData } from '../constants/profileFieldNames';
+import { ICountry } from 'store/types/modules/countries/countryTypes';
+import { Select } from 'shared/Select';
 
 type ProfileInputHandler = (value: string) => void;
 
 export interface IProfileCardProps {
-  profileData: IProfileData
-  readonly?: boolean
-  validateErorrsMap?: Record<string, string>
+  profileData: IProfileData;
+  currencyOptions?: string[];
+  countries?: ICountry[];
+  readonly?: boolean;
+  validateErorrsMap?: Record<string, string>;
 
-  onInputAge?: ProfileInputHandler
-  onInputAvatar?: ProfileInputHandler
-  onInputCity?: ProfileInputHandler
-  onInputCountry?: ProfileInputHandler
-  onInputFirstname?: ProfileInputHandler
-  onInputLastname?: ProfileInputHandler
-  onInputUsername?: ProfileInputHandler
+  onInputAge?: ProfileInputHandler;
+  onInputAvatar?: ProfileInputHandler;
+  onInputCity?: ProfileInputHandler;
+  onInputCountry?: ProfileInputHandler;
+  onInputFirstname?: ProfileInputHandler;
+  onInputLastname?: ProfileInputHandler;
+  onInputUsername?: ProfileInputHandler;
 }
 
 type ProfileInputsHandlersMap = Record<string, ProfileInputHandler | undefined>;
@@ -30,6 +34,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     profileData,
     readonly = true,
     validateErorrsMap,
+    countries = [],
     onInputAge,
     onInputAvatar,
     onInputCity,
@@ -43,6 +48,11 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     const filedsFiltersConfig = new Set(['id', 'password', 'avatar']);
     return !filedsFiltersConfig.has(field);
   }), [profileData]);
+
+  const countryList = useMemo(() => (
+    countries.map(country => ({ value: country.code, optionLabel: country.name }))
+  ),
+  [countries]);
 
   const onInputsMap = useMemo<ProfileInputsHandlersMap>(() => ({
     age: onInputAge,
@@ -80,6 +90,16 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
             </div>
           ))
         }
+
+        <div>
+          <Select
+            id={'profileCountry'}
+            options={countryList}
+            label='Страна'
+            selectedValue={profileData.country}
+            inlineLabel
+          />
+        </div>
       </div>
       <div className={classNames({ mainClassName: styleClasses.profileImgWrap, additional: ['flex-all-center'] })}>
         <Avatar

@@ -1,12 +1,13 @@
 export interface IProfileData {
-  id: number
-  username: string
-  firstname?: string
-  lastname?: string
-  age?: number
-  country?: string
-  city?: string
-  avatar?: string
+  id: number;
+  username: string;
+  firstname?: string;
+  lastname?: string;
+  age?: number;
+  country?: string;
+  city?: string;
+  avatar?: string;
+  currency?: string;
 }
 
 export enum ProfileFieldNames {

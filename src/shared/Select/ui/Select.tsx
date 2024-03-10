@@ -5,6 +5,7 @@ import { classNames } from 'shared/utils/classNames';
 
 interface SelectPropsI {
   id: string;
+  selectedValue?: string;
   label?: string;
   options: { value: string; optionLabel: string }[];
   inlineLabel?: boolean;
@@ -12,7 +13,7 @@ interface SelectPropsI {
 }
 
 export const Select: FC<SelectPropsI> = memo((props) => {
-  const { id, label, options, inlineLabel = false, gap = 'L' } = props;
+  const { id, label, options, inlineLabel = false, gap = 'L', selectedValue } = props;
   const className = classNames({
     mainClassName: styleClasses.appSelectBody,
     mods: {
@@ -22,11 +23,17 @@ export const Select: FC<SelectPropsI> = memo((props) => {
   });
   return (
     <div className={className}>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && <label htmlFor={id} className={'flex-align-center'}>{label}</label>}
       <select id={id} className={styleClasses.appSelect}>
-        <option selected disabled value={''}>Выбрать опцию</option>
+        {!selectedValue && <option selected disabled value={''}>Выбрать опцию</option>}
         {
-          options.map(option => (<option key={option.value} value={option.value}>{option.optionLabel}</option>))
+          options.map(option => (
+            <option
+              key={option.value}
+              value={option.value}
+              selected={option.value === selectedValue}
+            >{option.optionLabel}</option>
+          ))
         }
       </select>
     </div>

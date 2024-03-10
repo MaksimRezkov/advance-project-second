@@ -7,36 +7,38 @@ import { ThunkMiddlewareFor } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 import { IProfileSchema } from './modules/profile/profileStateTypes';
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
+import { ICountrySchema } from './modules/countries/countryTypes';
 
 /** Описание глобального хранилища */
 export interface IStateSchema {
-  counter: ICounterSchema
-  authUser: IAuthUserSchema
-  modal: IModalSchema
+  counter: ICounterSchema;
+  authUser: IAuthUserSchema;
+  modal: IModalSchema;
 
   // Async reducers
-  loginProcess?: ILoginSchema
-  profile?: IProfileSchema
+  loginProcess?: ILoginSchema;
+  profile?: IProfileSchema;
+  countries?: ICountrySchema;
 }
 
 export type StateSchemaKeys = keyof IStateSchema;
 
 export interface IReducerManager {
-  getReducerMap: () => ReducersMapObject<IStateSchema>
-  reduce: (state: IStateSchema, action: AnyAction) => CombinedState<IStateSchema>
-  add: (key: StateSchemaKeys, reducer: Reducer) => void
-  remove: (key: StateSchemaKeys) => void
+  getReducerMap: () => ReducersMapObject<IStateSchema>;
+  reduce: (state: IStateSchema, action: AnyAction) => CombinedState<IStateSchema>;
+  add: (key: StateSchemaKeys, reducer: Reducer) => void;
+  remove: (key: StateSchemaKeys) => void;
 }
 
 export interface ReduxStoreWithManager extends EnhancedStore<IStateSchema, AnyAction, [ThunkMiddlewareFor<IStateSchema>]> {
-  reducerManager?: IReducerManager
+  reducerManager?: IReducerManager;
 }
 
 export interface IThunkConfig<T = string> {
   extra: {
-    apiClient: AxiosInstance
+    apiClient: AxiosInstance;
     navigate?: (to: To, options?: NavigateOptions) => void
-  }
-  state: IStateSchema
-  rejectValue: T
+  };
+  state: IStateSchema;
+  rejectValue: T;
 }

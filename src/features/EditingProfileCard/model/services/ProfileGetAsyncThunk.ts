@@ -3,7 +3,7 @@ import { IProfileData } from 'entityes/Profile';
 import { IThunkConfig } from 'store';
 
 export interface IProfileThunkParams {
-  id: number
+  id: number;
 }
 
 export const ProfileGetAsyncThunk = createAsyncThunk<IProfileData, IProfileThunkParams, IThunkConfig>(
