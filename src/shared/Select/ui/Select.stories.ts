@@ -54,6 +54,6 @@ export const SelectWithLabelDark: Story = {
     gap: 'S',
   },
   decorators: [
-    ThemeDecorator('light'),
+    ThemeDecorator('dark'),
   ],
 };

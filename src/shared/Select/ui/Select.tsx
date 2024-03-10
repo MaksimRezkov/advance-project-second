@@ -23,7 +23,7 @@ export const Select: FC<SelectPropsI> = memo((props) => {
   return (
     <div className={className}>
       {label && <label htmlFor={id}>{label}</label>}
-      <select id={id}>
+      <select id={id} className={styleClasses.appSelect}>
         <option selected disabled value={''}>Выбрать опцию</option>
         {
           options.map(option => (<option key={option.value} value={option.value}>{option.optionLabel}</option>))
