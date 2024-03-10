@@ -45,7 +45,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   } = props;
 
   const filedsList = useMemo(() => Object.keys(profileData).filter((field) => {
-    const filedsFiltersConfig = new Set(['id', 'password', 'avatar']);
+    const filedsFiltersConfig = new Set(['id', 'password', 'avatar', 'country', 'currency']);
     return !filedsFiltersConfig.has(field);
   }), [profileData]);
 
@@ -98,6 +98,8 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
             label='Страна'
             selectedValue={profileData.country}
             inlineLabel
+            disabled={readonly}
+            onChange={onInputCountry}
           />
         </div>
       </div>
