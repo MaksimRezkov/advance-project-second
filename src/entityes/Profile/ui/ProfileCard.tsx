@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo } from 'react';
+import React, { FC, memo, useCallback, useMemo } from 'react';
 import { ApInput } from 'shared/input';
 
 import styleClasses from './ProfileCard.module.scss';

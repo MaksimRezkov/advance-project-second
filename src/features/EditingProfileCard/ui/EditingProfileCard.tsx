@@ -39,6 +39,7 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
   const { data, formData, error, isLoading, isEdit, isValidChange } = useAppSelector(getProfileStateFields);
   const { countriesFetchErr, countriesList, isLoadingCountries } = useAppSelector(getCountriesStateFields);
   const { currencyFetchErr, currencyList, isLoadingCurrency } = useAppSelector(getCurrencyStateFields);
+
   const [validateErorrsMap, setValidateErorrsMap] = useState<Record<string, string>>({});
   const handlers = useEditProfileCardHandlres({ dispatch, formData, isEdit, setValidateErorrsMap, isValidChange: !!isValidChange });
   const editBtnText = isEdit ? 'Отменить' : 'Редактировать';
