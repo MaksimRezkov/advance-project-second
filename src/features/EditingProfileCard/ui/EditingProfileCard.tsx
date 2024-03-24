@@ -15,6 +15,8 @@ import { useEditProfileCardHandlres } from '../lib/hooks/useEditProfileHandlers'
 import { countriesRedicer } from 'entityes/Country/model/slice/CountriesSlice';
 import { CountryGetAllAsyncThunk } from 'entityes/Country';
 import { getCountriesStateFields } from 'entityes/Country/model/selectors/getCountriesStateFields';
+import { CurrencyGetAllAsyncThunk, currencyReducers } from 'entityes/Currency';
+import { getCurrencyStateFields } from 'entityes/Currency/model/selectors/getCurrencyStateFields';
 
 interface IEditingProfileCardProps {
   userId: number;
@@ -23,6 +25,7 @@ interface IEditingProfileCardProps {
 const addingReducers: AddedReducerConf[] = [
   { reducerKey: 'profile', reducer: profileReducer },
   { reducerKey: 'countries', reducer: countriesRedicer },
+  { reducerKey: 'currency', reducer: currencyReducers },
 ];
 
 export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }) => {
@@ -35,13 +38,15 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
   const dispatch = useAppDispatch();
   const { data, formData, error, isLoading, isEdit, isValidChange } = useAppSelector(getProfileStateFields);
   const { countriesFetchErr, countriesList, isLoadingCountries } = useAppSelector(getCountriesStateFields);
+  const { currencyFetchErr, currencyList, isLoadingCurrency } = useAppSelector(getCurrencyStateFields);
   const [validateErorrsMap, setValidateErorrsMap] = useState<Record<string, string>>({});
   const handlers = useEditProfileCardHandlres({ dispatch, formData, isEdit, setValidateErorrsMap, isValidChange: !!isValidChange });
   const editBtnText = isEdit ? 'Отменить' : 'Редактировать';
 
   useEffect(() => {
     dispatch(ProfileGetAsyncThunk({ id: userId }));
-    dispatch(CountryGetAllAsyncThunk({}));
+    dispatch(CountryGetAllAsyncThunk());
+    dispatch(CurrencyGetAllAsyncThunk());
   }, [userId]);
 
   if (isLoading) {
@@ -52,7 +57,7 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
     );
   }
 
-  if (!isLoading && !isLoadingCountries && formData) {
+  if (!isLoading && !isLoadingCountries && !isLoadingCurrency && formData) {
     return (
       <div className={styleClasses.editingProfile}>
         <Button onClick={handlers.onEditBtnClick} bordered={true}>{editBtnText}</Button>
@@ -61,6 +66,7 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
         <ProfileCard
           profileData={formData}
           countries={countriesList}
+          currencyList={currencyList}
           onInputAge={handlers.onInputAge}
           onInputAvatar={handlers.onInputAvatar}
           onInputCity={handlers.onInputCity}
@@ -68,6 +74,7 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
           onInputFirstname={handlers.onInputFirstname}
           onInputLastname={handlers.onInputLastname}
           onInputUsername={handlers.onInputUsername}
+          onInputCurrency={handlers.onInputCurrency}
           readonly={!isEdit}
           validateErorrsMap={validateErorrsMap}
         ></ProfileCard>
@@ -81,6 +88,11 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
     );
   };
   if (!isLoadingCountries && countriesFetchErr) {
+    return (
+      <h1>Ошибка загрузки данных списка государств</h1>
+    );
+  };
+  if (!isLoadingCurrency && currencyFetchErr) {
     return (
       <h1>Ошибка загрузки данных списка государств</h1>
     );

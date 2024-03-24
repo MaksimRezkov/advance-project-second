@@ -4,6 +4,7 @@ import {
   validateCountry,
   validateFirstname,
   validateLastname,
+  validateUsername,
   ProfileFieldNames,
   IProfileData,
 } from 'entityes/Profile';
@@ -12,18 +13,18 @@ import React, { useCallback, useMemo } from 'react';
 import { AppDispatch } from 'store';
 
 interface IUseEdithProfileHandlersArgs {
-  dispatch: AppDispatch
-  isEdit?: boolean
-  isValidChange?: boolean
-  formData: IProfileData | null | undefined
-  setValidateErorrsMap: React.Dispatch<React.SetStateAction<Record<string, string>>>
+  dispatch: AppDispatch;
+  isEdit?: boolean;
+  isValidChange?: boolean;
+  formData: IProfileData | null | undefined;
+  setValidateErorrsMap: React.Dispatch<React.SetStateAction<Record<string, string>>>;
 }
 
 interface IValidateFnParams<V> {
-  value: V
-  validateFn: (value: V) => string | undefined
-  fieldName: string
-  setValidateErorrsMap: React.Dispatch<React.SetStateAction<Record<string, string>>>
+  value: V;
+  validateFn: (value: V) => string | undefined;
+  fieldName: string;
+  setValidateErorrsMap: React.Dispatch<React.SetStateAction<Record<string, string>>>;
 }
 
 const isValidCheck: <V>(params: IValidateFnParams<V>) => boolean = <V>(params: IValidateFnParams<V>) => {
@@ -35,11 +36,7 @@ const isValidCheck: <V>(params: IValidateFnParams<V>) => boolean = <V>(params: I
     };
   });
 
-  if (validateErrMsg) {
-    return false;
-  }
-
-  return true;
+  return !validateErrMsg;
 };
 
 export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs) => {
@@ -47,7 +44,7 @@ export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs)
 
   const onInputAge = useCallback((value: string) => {
     const isValid = isValidCheck<number>({ value: +value, validateFn: validateAge, fieldName: ProfileFieldNames.age, setValidateErorrsMap });
-    dispatch(profileActions.setValidChange(isValid));
+    dispatch(profileActions.setValidMap({ [ProfileFieldNames.age]: isValid }));
     dispatch(profileActions.setAge(+value));
   }, [dispatch, profileActions]);
 
@@ -61,24 +58,30 @@ export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs)
 
   const onInputCountry = useCallback((value: string) => {
     const isValid = isValidCheck<string>({ value, validateFn: validateCountry, fieldName: ProfileFieldNames.country, setValidateErorrsMap });
-    dispatch(profileActions.setValidChange(isValid));
+    dispatch(profileActions.setValidMap({ [ProfileFieldNames.country]: isValid }));
     dispatch(profileActions.setCountry(value));
   }, [dispatch, profileActions]);
 
   const onInputFirstname = useCallback((value: string) => {
     const isValid = isValidCheck<string>({ value, validateFn: validateFirstname, fieldName: ProfileFieldNames.firstname, setValidateErorrsMap });
-    dispatch(profileActions.setValidChange(isValid));
+    dispatch(profileActions.setValidMap({ [ProfileFieldNames.firstname]: isValid }));
     dispatch(profileActions.setFirstname(value));
   }, [dispatch, profileActions]);
 
   const onInputLastname = useCallback((value: string) => {
     const isValid = isValidCheck<string>({ value, validateFn: validateLastname, fieldName: ProfileFieldNames.lastname, setValidateErorrsMap });
-    dispatch(profileActions.setValidChange(isValid));
+    dispatch(profileActions.setValidMap({ [ProfileFieldNames.lastname]: isValid }));
     dispatch(profileActions.setLastname(value));
   }, [dispatch, profileActions]);
 
   const onInputUsername = useCallback((value: string) => {
+    const isValid = isValidCheck<string>({ value, validateFn: validateUsername, fieldName: ProfileFieldNames.username, setValidateErorrsMap });
+    dispatch(profileActions.setValidMap({ [ProfileFieldNames.username]: isValid }));
     dispatch(profileActions.setUsername(value));
+  }, [dispatch, profileActions]);
+
+  const onInputCurrency = useCallback((value: string) => {
+    dispatch(profileActions.setCurrency(value));
   }, [dispatch, profileActions]);
 
   const onEditBtnClick = useCallback(() => {
@@ -105,5 +108,6 @@ export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs)
     onInputUsername,
     onSaveBtnClick,
     onEditBtnClick,
+    onInputCurrency,
   };
 };

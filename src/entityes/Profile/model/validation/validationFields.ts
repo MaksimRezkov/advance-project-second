@@ -14,3 +14,7 @@ export function validateFirstname (value: string): string | undefined {
 export function validateLastname (value: string): string | undefined {
   if (!value) return 'Нужно указать фамилию';
 };
+
+export function validateUsername (value: string): string | undefined {
+  if (!value) return 'Необходимо указать логин';
+};

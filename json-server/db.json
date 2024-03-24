@@ -55,6 +55,28 @@
       "name": "Монако"
     }
   ],
+  "currency": [
+    {
+      "id": 1,
+      "code": "RUB",
+      "label": "Рубли"
+    },
+    {
+      "id": 2,
+      "code": "TG",
+      "label": "Тенге"
+    },
+    {
+      "id": 1,
+      "code": "USD",
+      "label": "Доллары"
+    },
+    {
+      "id": 1,
+      "code": "EU",
+      "label": "Евро"
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -64,7 +86,7 @@
       "lastname": "Ololoev",
       "age": 25,
       "country": "CZ",
-      "currency": "RUB",
+      "currency": "USD",
       "city": "Moscow",
       "avatar": "https://i.pinimg.com/736x/c6/25/90/c62590c1756680060e7c38011cd704b5.jpg"
     },

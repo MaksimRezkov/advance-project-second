@@ -8,6 +8,7 @@ import { IProfileSchema } from './modules/profile/profileStateTypes';
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { ICountrySchema } from './modules/countries/countryTypes';
+import { ICurrencySchema } from './modules/currency/currencyTypes';
 
 /** Описание глобального хранилища */
 export interface IStateSchema {
@@ -19,6 +20,7 @@ export interface IStateSchema {
   loginProcess?: ILoginSchema;
   profile?: IProfileSchema;
   countries?: ICountrySchema;
+  currency?: ICurrencySchema;
 }
 
 export type StateSchemaKeys = keyof IStateSchema;

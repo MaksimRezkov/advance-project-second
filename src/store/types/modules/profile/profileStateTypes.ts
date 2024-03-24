@@ -7,5 +7,6 @@ export interface IProfileSchema {
   error: string | null;
   isEdit: boolean;
   isChange?: boolean;
+  validMap: Record<string, boolean>;
   isValidChange?: boolean;
 }

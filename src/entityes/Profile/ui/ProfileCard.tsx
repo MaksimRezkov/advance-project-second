@@ -7,6 +7,7 @@ import { classNames } from 'shared/utils/classNames';
 import { ProfileFieldsTranslate, IProfileData } from '../constants/profileFieldNames';
 import { ICountry } from 'store/types/modules/countries/countryTypes';
 import { Select } from 'shared/Select';
+import { ICurrency } from 'store/types/modules/currency/currencyTypes';
 
 type ProfileInputHandler = (value: string) => void;
 
@@ -14,6 +15,7 @@ export interface IProfileCardProps {
   profileData: IProfileData;
   currencyOptions?: string[];
   countries?: ICountry[];
+  currencyList?: ICurrency[];
   readonly?: boolean;
   validateErorrsMap?: Record<string, string>;
 
@@ -24,6 +26,7 @@ export interface IProfileCardProps {
   onInputFirstname?: ProfileInputHandler;
   onInputLastname?: ProfileInputHandler;
   onInputUsername?: ProfileInputHandler;
+  onInputCurrency?: ProfileInputHandler;
 }
 
 type ProfileInputsHandlersMap = Record<string, ProfileInputHandler | undefined>;
@@ -35,6 +38,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     readonly = true,
     validateErorrsMap,
     countries = [],
+    currencyList = [],
     onInputAge,
     onInputAvatar,
     onInputCity,
@@ -42,6 +46,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     onInputFirstname,
     onInputLastname,
     onInputUsername,
+    onInputCurrency,
   } = props;
 
   const filedsList = useMemo(() => Object.keys(profileData).filter((field) => {
@@ -53,6 +58,12 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     countries.map(country => ({ value: country.code, optionLabel: country.name }))
   ),
   [countries]);
+
+  const currencyes = useMemo(() => (
+    currencyList.map(currency => ({ value: currency.code, optionLabel: currency.label }))
+  ),
+  [currencyList]);
+  console.log('currencyes', currencyes);
 
   const onInputsMap = useMemo<ProfileInputsHandlersMap>(() => ({
     age: onInputAge,
@@ -100,6 +111,17 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
             inlineLabel
             disabled={readonly}
             onChange={onInputCountry}
+          />
+        </div>
+        <div>
+          <Select
+            id={'profileCurrency'}
+            options={currencyes}
+            label='Валюта'
+            selectedValue={profileData.currency}
+            inlineLabel
+            disabled={readonly}
+            onChange={onInputCurrency}
           />
         </div>
       </div>

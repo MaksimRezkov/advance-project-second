@@ -11,6 +11,7 @@ const initialState: IProfileSchema = {
   isEdit: false,
   isChange: false,
   isValidChange: true,
+  validMap: {},
 };
 
 const profileSlice = createSlice({
@@ -24,14 +25,20 @@ const profileSlice = createSlice({
     cancelEditing: (state) => {
       if (state.isChange && state.profileData) {
         state.isChange = false;
+        state.validMap = {};
+        state.isValidChange = true;
         state.profileDataForm = {
           ...state.profileData,
         };
       }
     },
 
-    setValidChange: (state, action: PayloadAction<boolean>) => {
-      state.isValidChange = action.payload;
+    setValidMap: (state, action: PayloadAction<Record<string, boolean>>) => {
+      state.validMap = {
+        ...state.validMap,
+        ...action.payload,
+      };
+      state.isValidChange = Object.values(state.validMap).every(isValid => isValid);
     },
 
     setAge: (state, action: PayloadAction<number>) => {
@@ -94,6 +101,15 @@ const profileSlice = createSlice({
         state.profileDataForm = {
           ...state.profileDataForm,
           country: action.payload,
+        };
+      }
+    },
+    setCurrency: (state, action: PayloadAction<string>) => {
+      if (state.profileDataForm) {
+        state.isChange = true;
+        state.profileDataForm = {
+          ...state.profileDataForm,
+          currency: action.payload,
         };
       }
     },

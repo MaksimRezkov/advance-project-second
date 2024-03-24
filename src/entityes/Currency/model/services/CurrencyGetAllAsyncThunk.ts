@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'store';
-import { ICountry } from 'store/types/modules/countries/countryTypes';
+import { ICurrency } from 'store/types/modules/currency/currencyTypes';
 
-export const CountryGetAllAsyncThunk = createAsyncThunk<ICountry[], undefined, IThunkConfig>(
-  'country/fetchAllCountries',
+export const CurrencyGetAllAsyncThunk = createAsyncThunk<ICurrency[], undefined, IThunkConfig>(
+  'currency/fetchAllCurrency',
   async (_, thunkApi) => {
-    const { rejectWithValue, extra, dispatch } = thunkApi;
+    const { extra, rejectWithValue } = thunkApi;
     try {
-      const res = await extra.apiClient.get<ICountry[]>('/countries');
+      const res = await extra.apiClient.get<ICurrency[]>('/currency');
       const { data } = res;
 
       return data;
