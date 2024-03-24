@@ -22,6 +22,7 @@ export default function (env: IEnvOptions): webpack.Configuration {
         paths,
         port,
         apiUrl,
+        project: 'frontend',
     };
     console.log('build opts', buildOptions);
 

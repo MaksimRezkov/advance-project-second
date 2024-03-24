@@ -93,7 +93,7 @@ export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs)
   }, [dispatch, profileActions, isEdit]);
 
   const onSaveBtnClick = useCallback(() => {
-    if (formData && isValidChange) {
+    if (formData && isValidChange && _PROJECT_ === 'frontend') {
       dispatch(ProfilePutAsyncThunk(formData));
     }
   }, [dispatch, formData, isValidChange]);

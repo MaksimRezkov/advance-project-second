@@ -1,10 +1,9 @@
-import { ProfileCard, profileActions, profileReducer } from 'entityes/Profile';
-import { FC, memo, useCallback, useEffect, useState } from 'react';
+import React, { FC, memo, useEffect, useState } from 'react';
+import { ProfileCard, profileReducer } from 'entityes/Profile';
 import { AddedReducerConf, useAddAsyncReducer } from 'shared/lib/hooks/useAddAsyncReducer';
 import { useAppDispatch } from 'store/lib/hooks/useAppDispatch';
 import { ProfileGetAsyncThunk } from '../model/services/ProfileGetAsyncThunk';
 import { useAppSelector } from 'store/lib/hooks/useAppSelector';
-import { getAuthUserId } from 'entityes/AuthUser';
 import { getProfileStateFields } from '../model/selectors/getProfileStateFields';
 import { LoaderSpinner } from 'shared/LoaderSpinner';
 
@@ -29,7 +28,7 @@ const addingReducers: AddedReducerConf[] = [
 ];
 
 export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }) => {
-  // Добавили store и фсинхронные редюсеры
+  // Добавили store и асинхронные редюсеры
   useAddAsyncReducer({
     reducers: addingReducers,
     removeAfterDestroy: true,
@@ -45,6 +44,7 @@ export const EditingProfileCard: FC<IEditingProfileCardProps> = memo(({ userId }
   const editBtnText = isEdit ? 'Отменить' : 'Редактировать';
 
   useEffect(() => {
+    if (_PROJECT_ !== 'frontend') return;
     dispatch(ProfileGetAsyncThunk({ id: userId }));
     dispatch(CountryGetAllAsyncThunk());
     dispatch(CurrencyGetAllAsyncThunk());

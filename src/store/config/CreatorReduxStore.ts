@@ -7,6 +7,7 @@ import { authUserReducer } from 'entityes/AuthUser';
 import { modalReducer } from 'shared/Modal';
 import { createReducerManager } from './reducerManager';
 import { apiClient } from 'shared/api/apiClient';
+import { profileReducer } from 'entityes/Profile';
 
 export function CreatorReduxStore (initialState?: IStateSchema, navigate?: (to: To, options?: NavigateOptions) => void): ReduxStoreWithManager {
   const rootReducer: ReducersMapObject<IStateSchema> = {
@@ -14,6 +15,11 @@ export function CreatorReduxStore (initialState?: IStateSchema, navigate?: (to: 
     authUser: authUserReducer,
     modal: modalReducer,
   };
+
+  if (_PROJECT_ !== 'frontend') {
+    // @ts-ignore
+    rootReducer.profile = profileReducer;
+  }
 
   const reducerManager = createReducerManager(rootReducer);
 

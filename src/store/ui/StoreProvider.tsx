@@ -5,7 +5,7 @@ import { IStateSchema } from '../types/StateSchema';
 import { useNavigate } from 'react-router-dom';
 
 export interface IStoreProviderProps {
-  initialState?: IStateSchema
+  initialState?: IStateSchema;
 }
 
 export const StoreProvider: FC<IStoreProviderProps> = ({ children, initialState }) => {

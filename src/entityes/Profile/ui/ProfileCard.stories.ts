@@ -32,19 +32,21 @@ const countries: ICountry[] = [
   },
 ];
 
+const profileData = {
+  username: 'story@mail.ru',
+  id: 0,
+  age: 25,
+  avatar: 'https://i.pinimg.com/736x/c6/25/90/c62590c1756680060e7c38011cd704b5.jpg',
+  country: 'Russia',
+  city: 'Moskow',
+  currency: 'RUB',
+  firstname: 'Ragnar',
+  lastname: 'LordBrock',
+};
+
 export const ProfileCardWithData: Story = {
   args: {
-    profileData: {
-      username: 'story@mail.ru',
-      id: 0,
-      age: 25,
-      avatar: 'https://i.pinimg.com/736x/c6/25/90/c62590c1756680060e7c38011cd704b5.jpg',
-      country: 'Russia',
-      city: 'Moskow',
-      currency: 'RUB',
-      firstname: 'Ragnar',
-      lastname: 'LordBrock',
-    },
+    profileData,
     readonly: true,
     countries,
     currencyList,
@@ -56,17 +58,7 @@ export const ProfileCardWithData: Story = {
 
 export const ProfileCardWithErrors: Story = {
   args: {
-    profileData: {
-      username: 'story@mail.ru',
-      id: 0,
-      age: 25,
-      avatar: 'https://i.pinimg.com/736x/c6/25/90/c62590c1756680060e7c38011cd704b5.jpg',
-      country: 'Russia',
-      city: 'Moskow',
-      currency: 'RUB',
-      firstname: 'Ragnar',
-      lastname: 'LordBrock',
-    },
+    profileData,
     validateErorrsMap: {
       username: 'test err username',
       lastname: 'test err lastname',

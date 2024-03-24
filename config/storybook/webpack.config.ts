@@ -19,8 +19,9 @@ export default ({ config }: { config: WebpackConfiguration }): WebpackConfigurat
   };
 
   const definePluginOpts = {
-    _IS_DEV_: true,
+    _IS_DEV_: JSON.stringify(true),
     // _API_: buildOptions.apiUrl,
+    _PROJECT_: JSON.stringify('storybook'),
   };
 
   config.resolve?.modules?.push(paths.moduleResolve);

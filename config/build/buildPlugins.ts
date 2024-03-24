@@ -10,7 +10,8 @@ export function buildPlugins (buildOptions: IBuildOptions): webpack.WebpackPlugi
 
   const definePluginOpts = {
     _IS_DEV_: buildOptions.isDev,
-    // _API_: buildOptions.apiUrl,
+    _API_: buildOptions.apiUrl,
+    _PROJECT_: buildOptions.project,
   };
 
   return [

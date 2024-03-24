@@ -7,8 +7,8 @@ import { StoreProvider } from 'store';
 import { IStateSchema } from 'store/types/StateSchema';
 
 export interface IComponentDecoratorProps {
-  route?: string
-  initialState?: DeepPartial<IStateSchema>
+  route?: string;
+  initialState?: DeepPartial<IStateSchema>;
 }
 
 export const ComponentDecorator = (component: ReactNode, options: IComponentDecoratorProps = {}) => {
