@@ -18,10 +18,10 @@ export const ComponentDecorator = (component: ReactNode, options: IComponentDeco
   } = options;
 
   return render(
-    <StoreProvider initialState={initialState as IStateSchema}>
-      <MemoryRouter initialEntries={[route]}>
+    <MemoryRouter initialEntries={[route]}>
+      <StoreProvider initialState={initialState as IStateSchema}>
         {component}
-      </MemoryRouter>
-    </StoreProvider>,
+      </StoreProvider>
+    </MemoryRouter>,
   );
 };

@@ -30,4 +30,17 @@ describe('LoginAsyncThunk', () => {
     expect(extraArgument.apiClient.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
   });
+
+  test('success login', async () => {
+    const action = loginAsyncThunk({ loginData: { password: '123', username: 'admin' } });
+    const extraArgument = {
+      apiClient: mockedAxios,
+      navigate: jest.fn(),
+    };
+    extraArgument.apiClient.post.mockReturnValue(Promise.resolve(''));
+    const result = await action(dispatch, getState, extraArgument);
+    expect(dispatch).toHaveBeenCalledTimes(2);
+    expect(extraArgument.apiClient.post).toHaveBeenCalled();
+    expect(result.meta.requestStatus).toBe('rejected');
+  });
 });
