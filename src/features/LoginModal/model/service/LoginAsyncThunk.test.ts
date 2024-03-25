@@ -16,16 +16,21 @@ describe('LoginAsyncThunk', () => {
   });
 
   test('failed login', async () => {
-    // Указываем что будет возвращать метод post
     const action = loginAsyncThunk({ loginData: { password: '123', username: 'admin' } });
 
     const extraArgument = {
       apiClient: mockedAxios,
       navigate: jest.fn(),
     };
+    // Указываем что будет возвращать метод post
+    extraArgument.apiClient.post.mockReturnValue(Promise.reject('failed login').catch(e => console.log(e)));
 
+    /** Имитируем поведение диспатча, который так же вызывает эту функцию,
+     * передаём инстанс dispatch;
+     * передаём главный редюсер;
+     * extra, такой же как указывается в configureStore
+     */
     const result = await action(dispatch, getState, extraArgument);
-    extraArgument.apiClient.post.mockReturnValue(Promise.reject('').catch(e => console.log(e)));
     expect(dispatch).toHaveBeenCalledTimes(2);
     expect(extraArgument.apiClient.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
@@ -37,8 +42,9 @@ describe('LoginAsyncThunk', () => {
       apiClient: mockedAxios,
       navigate: jest.fn(),
     };
-    extraArgument.apiClient.post.mockReturnValue(Promise.resolve(''));
+    extraArgument.apiClient.post.mockReturnValue(Promise.resolve('success login').then(res => console.log(res)));
     const result = await action(dispatch, getState, extraArgument);
+    console.log(result);
     expect(dispatch).toHaveBeenCalledTimes(2);
     expect(extraArgument.apiClient.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
