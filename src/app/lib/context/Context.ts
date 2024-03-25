@@ -2,12 +2,12 @@ import React, { createContext } from 'react';
 
 /** Создание объекта контекста для всего приложения */
 
-export type ThemeValueType = 'light' | 'dark';
+export type ThemeValueType = 'light' | 'dark' | 'color';
 
 /** цветовая тема */
 export interface IThemeContextValues {
-  themeValue?: ThemeValueType
-  setThemeValue?: (themeValue: ThemeValueType) => void
+  themeValue?: ThemeValueType;
+  setThemeValue?: (themeValue: ThemeValueType) => void;
 
 }
 

@@ -3,9 +3,15 @@ import { ThemeContext, ThemeValueType } from './Context';
 import { LOCAL_STORAGE_THEME_KEY } from 'shared/const/LocalStorage';
 
 export interface IUseThemeResult {
-  themeValue: ThemeValueType | undefined
-  toggleThemeValue: () => void
+  themeValue: ThemeValueType | undefined;
+  toggleThemeValue: () => void;
 }
+
+const ThemeSwitcher: Record<ThemeValueType, ThemeValueType> = {
+  light: 'dark',
+  dark: 'color',
+  color: 'light',
+};
 
 /** Хук для получения и управления состоянием данных о теме из контекста приложения */
 export function useThemeContext (): IUseThemeResult {
@@ -14,7 +20,8 @@ export function useThemeContext (): IUseThemeResult {
 
   /** Ссылка на функцию, использующую обновление состояния и вызываемую где-либо в приложении */
   const toggleThemeValue = () => {
-    const newThemeValue: ThemeValueType = themeValue === 'light' ? 'dark' : 'light';
+    const newThemeValue: ThemeValueType = themeValue ? ThemeSwitcher[themeValue] : 'light';
+
     setThemeValue?.(newThemeValue);
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newThemeValue);
   };

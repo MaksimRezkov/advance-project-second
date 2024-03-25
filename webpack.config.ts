@@ -1,7 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
-import { IBuildOptions, IBuildPaths, IEnvOptions } from './config/build/types';
+import { IBuildOptions, IBuildPaths, IEnvOptions, ProjectEnv } from './config/build/types';
 
 export default function (env: IEnvOptions): webpack.Configuration {
     const mode = env.mode || 'development';
@@ -22,7 +22,7 @@ export default function (env: IEnvOptions): webpack.Configuration {
         paths,
         port,
         apiUrl,
-        project: 'frontend',
+        project: JSON.stringify('frontend') as ProjectEnv,
     };
     console.log('build opts', buildOptions);
 
