@@ -8,12 +8,13 @@
     "test-ui": "npx loki test",
     "test-ui-approve": "npx loki approve",
     "dev-build": "webpack --env mode=development",
-    "dev-start": "webpack serve --env port=3000 --env mode=development",
+    "dev-front-start": "webpack serve --env port=3000 --env mode=development",
     "dev-api-start": "node ./json-server/index.js",
     "prod-start": "webpack serve --env port=3000 --env mode=production",
     "lint-fix": "eslint --fix --ext .js,.ts,.tsx .",
     "storybook-start": "storybook dev -p 6006 -c ./config/storybook",
-    "build-storybook": "storybook build -c ./config/storybook"
+    "build-storybook": "storybook build -c ./config/storybook",
+    "start-dev": "concurrently \"npm run dev-front-start\" \"npm run dev-api-start\""
   },
   "keywords": [],
   "author": "",
@@ -41,6 +42,7 @@
     "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "babel-loader": "^8.2.3",
+    "concurrently": "^8.2.2",
     "css-loader": "^6.6.0",
     "eslint": "^8.54.0",
     "eslint-config-standard-with-typescript": "^40.0.0",
