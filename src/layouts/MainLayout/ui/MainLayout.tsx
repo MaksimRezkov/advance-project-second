@@ -6,13 +6,13 @@ import './MainLayout.scss';
 import { Portal } from 'shared/Portal/ui/Portal';
 import { LoginModal } from 'features/LoginModal';
 import { useSelector } from 'react-redux';
-import { getModalOpenFlag } from 'shared/Modal/model/selectors/getModalOpenFlag';
+import { getModalOpenFlags } from 'shared/Modal/model/selectors/getModalOpenFlags';
 
 const SidebarMemo = memo(Sidebar);
 
 export const MainLayout: FC = ({ children }) => {
   // const { isModalOpen } = useModalOpenContext();
-  const isModalOpen = useSelector(getModalOpenFlag);
+  const modalOpenFlags = useSelector(getModalOpenFlags);
 
   return (
     <div className="app-layout">
@@ -23,7 +23,7 @@ export const MainLayout: FC = ({ children }) => {
       </div>
 
       {
-        isModalOpen &&
+        (modalOpenFlags.isLoginOpen || modalOpenFlags.isRegisterOpen) &&
         <Portal>
           <LoginModal/>
         </Portal>

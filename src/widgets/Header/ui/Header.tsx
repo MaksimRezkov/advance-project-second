@@ -15,8 +15,12 @@ export const Header: FC = () => {
   const dispatch = useDispatch();
   const authUserId = useAppSelector(getAuthUserId);
 
-  const onOpenModal = useCallback(() => {
-    dispatch(modalActions.toggleOpenModal(true));
+  const onOpenModal = useCallback((isRegister = false) => {
+    if (isRegister) {
+      dispatch(modalActions.toggleOpenModal({ isRegisterOpen: true }));
+      return;
+    }
+    dispatch(modalActions.toggleOpenModal({ isLoginOpen: true }));
   }, [dispatch, modalActions]);
 
   const loginBtnText = authUserId ? 'Выйти' : 'Войти';
@@ -28,9 +32,14 @@ export const Header: FC = () => {
           <div className="header-content_right">
               <ThemeSwitcherMemo/>
               <ButtonMemo
-                onClick={onOpenModal}
+                onClick={() => { onOpenModal(); }}
               >
                 {loginBtnText}
+              </ButtonMemo>
+              <ButtonMemo
+                onClick={() => { onOpenModal(true); }}
+              >
+                Регистрация
               </ButtonMemo>
           </div>
         </div>

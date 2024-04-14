@@ -3,7 +3,7 @@ import { getClassName } from '../../lib/utils/getClassName';
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'shared/Button/ui/Button';
-import { USER_TOKEN_KEY } from 'shared/const/LocalStorage';
+import { USER_DATA_KEY } from 'shared/const/LocalStorage';
 import { localStorageService } from 'shared/utils/LocalStorage/LocalStorageService';
 
 interface LogoutFormProps {
@@ -17,7 +17,7 @@ export const LogoutForm: FC<LogoutFormProps> = ({ onCancel, onConfirm }) => {
 
   const confirmLogout = () => {
     dispatch(authUserActions.clearAuthUser());
-    localStorageService.removeItem(USER_TOKEN_KEY);
+    localStorageService.removeItem(USER_DATA_KEY);
     onConfirm();
   };
 

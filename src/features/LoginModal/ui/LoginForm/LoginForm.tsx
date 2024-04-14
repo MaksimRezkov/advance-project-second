@@ -12,23 +12,29 @@ import { loginActions, loginReducer } from 'features/LoginModal/model/slice/logi
 import { AddedReducerConf, useAddAsyncReducer } from 'shared/lib/hooks/useAddAsyncReducer';
 import { useAppDispatch } from 'store/lib/hooks/useAppDispatch';
 import { DEFAULT_ERR_TEXT } from 'shared/const/messages';
+// import { IRegisterData, registerAsyncThunk } from 'features/LoginModal/model/service/Register/RegisterAsyncThunk';
+import { useAppSelector } from 'store/lib/hooks/useAppSelector';
+import { getModalOpenFlags } from 'shared/Modal/model/selectors/getModalOpenFlags';
 
 const ButtonMemo = memo(Button);
 
 export interface IConfirmData {
-  login: string
-  password: string
+  login: string;
+  password: string;
 }
 
 export interface LoginFormProps {
-  onConfirm: () => void
-  onCancel: () => void
+  onConfirm: () => void;
+  onCancel: () => void;
 }
 
 const addingReducers: AddedReducerConf[] = [{ reducer: loginReducer, reducerKey: 'loginProcess' }];
 
 const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
   const { formBtnsClassName, formClassName, formInputsClassName } = getClassName();
+  const modalOpenFlags = useAppSelector(getModalOpenFlags);
+
+  const isRegister = useMemo(() => modalOpenFlags.isRegisterOpen, [modalOpenFlags]);
 
   const dispatch = useAppDispatch();
   useAddAsyncReducer({
@@ -45,12 +51,17 @@ const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
   const errorLoginResponse = useSelector(getLoginError);
 
   const confirmData = useCallback(async () => {
-    const result = await dispatch(loginAsyncThunk({
-      loginData: {
+    const data = {
+      data: {
         password,
         username: login,
       },
-    }));
+    };
+    // if (isRegister) {
+    //   result = await dispatch(registerAsyncThunk(data));
+    // } else {
+    // }
+    const result = await dispatch(loginAsyncThunk(data));
     if (result.meta.requestStatus === 'fulfilled') {
       onConfirm();
     }

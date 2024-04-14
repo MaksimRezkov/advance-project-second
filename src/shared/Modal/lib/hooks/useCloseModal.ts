@@ -14,7 +14,7 @@ export function useCloseModal (onClose?: () => void) {
     addTimer(() => {
       onClose && onClose();
       // setModalOpen(false);
-      dispatch(modalActions.toggleOpenModal(false));
+      dispatch(modalActions.toggleOpenModal({ isLoginOpen: false, isOpen: false, isRegisterOpen: false }));
     }, 200);
   }, [setModalOpenedClass, addTimer, dispatch, modalActions]);
 

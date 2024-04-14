@@ -1,3 +1,4 @@
+const { default: axios } = require('axios');
 const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
@@ -21,11 +22,18 @@ server.use(async (req, res, next) => {
 server.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
+        const res = await axios.post('http://localhost:4200/api/auth/login', {
+            password,
+            email: username,
+        });
+        const { data } = res;
+        const { accessToken } = data;
+
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
         const { users = [] } = db;
 
         const userFromBd = users.find(
-            (user) => user.username === username && user.password === password,
+            (user) => user.username === username,
         );
 
         if (userFromBd) {
@@ -36,7 +44,9 @@ server.post('/login', async (req, res) => {
             });
             return res.json({
                 id: userFromBd.id,
+                accessToken,
                 username: userFromBd.username,
+
             });
         }
 

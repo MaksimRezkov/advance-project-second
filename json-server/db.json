@@ -80,7 +80,7 @@
   "users": [
     {
       "id": 1,
-      "username": "admin",
+      "username": "admin@mail.ru",
       "password": "123",
       "firstname": "Esteban",
       "lastname": "Ololoev",

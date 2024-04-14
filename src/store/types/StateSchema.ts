@@ -39,7 +39,7 @@ export interface ReduxStoreWithManager extends EnhancedStore<IStateSchema, AnyAc
 export interface IThunkConfig<T = string> {
   extra: {
     apiClient: AxiosInstance;
-    navigate?: (to: To, options?: NavigateOptions) => void
+    navigate?: (to: To, options?: NavigateOptions) => void;
   };
   state: IStateSchema;
   rejectValue: T;

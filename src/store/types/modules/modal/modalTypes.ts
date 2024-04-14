@@ -1,3 +1,7 @@
 export interface IModalSchema {
-  isOpen: boolean
+  modalsConfig: {
+    isOpen?: boolean;
+    isLoginOpen?: boolean;
+    isRegisterOpen?: boolean;
+  };
 }
