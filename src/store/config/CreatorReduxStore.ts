@@ -6,7 +6,7 @@ import { counterReducer } from 'entityes/Counter';
 import { authUserReducer } from 'entityes/AuthUser';
 import { modalReducer } from 'shared/Modal';
 import { createReducerManager } from './reducerManager';
-import { apiClient } from 'shared/api/apiClient';
+import { apiClient, apiUsersClient } from 'shared/api/apiClient';
 import { profileReducer } from 'entityes/Profile';
 
 export function CreatorReduxStore (initialState?: IStateSchema, navigate?: (to: To, options?: NavigateOptions) => void): ReduxStoreWithManager {
@@ -32,6 +32,7 @@ export function CreatorReduxStore (initialState?: IStateSchema, navigate?: (to: 
         extraArgument: {
           apiClient,
           navigate,
+          apiUsersClient,
         },
       },
     }),

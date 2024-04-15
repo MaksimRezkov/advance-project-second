@@ -16,7 +16,7 @@ describe('LoginAsyncThunk', () => {
   });
 
   test('failed login', async () => {
-    const action = loginAsyncThunk({ loginData: { password: '123', username: 'admin' } });
+    const action = loginAsyncThunk({ loginData: { password: '123', email: 'admin@mail.ru' } });
 
     const extraArgument = {
       apiClient: mockedAxios,
@@ -37,7 +37,7 @@ describe('LoginAsyncThunk', () => {
   });
 
   test('success login', async () => {
-    const action = loginAsyncThunk({ loginData: { password: '123', username: 'admin' } });
+    const action = loginAsyncThunk({ loginData: { password: '123', email: 'admin' } });
     const extraArgument = {
       apiClient: mockedAxios,
       navigate: jest.fn(),

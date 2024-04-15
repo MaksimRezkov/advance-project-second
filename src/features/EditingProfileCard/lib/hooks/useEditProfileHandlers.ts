@@ -4,7 +4,7 @@ import {
   validateCountry,
   validateFirstname,
   validateLastname,
-  validateUsername,
+  validateEmail,
   ProfileFieldNames,
   IProfileData,
 } from 'entityes/Profile';
@@ -74,10 +74,10 @@ export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs)
     dispatch(profileActions.setLastname(value));
   }, [dispatch, profileActions]);
 
-  const onInputUsername = useCallback((value: string) => {
-    const isValid = isValidCheck<string>({ value, validateFn: validateUsername, fieldName: ProfileFieldNames.username, setValidateErorrsMap });
-    dispatch(profileActions.setValidMap({ [ProfileFieldNames.username]: isValid }));
-    dispatch(profileActions.setUsername(value));
+  const onInputEmail = useCallback((value: string) => {
+    const isValid = isValidCheck<string>({ value, validateFn: validateEmail, fieldName: ProfileFieldNames.email, setValidateErorrsMap });
+    dispatch(profileActions.setValidMap({ [ProfileFieldNames.email]: isValid }));
+    dispatch(profileActions.setEmail(value));
   }, [dispatch, profileActions]);
 
   const onInputCurrency = useCallback((value: string) => {
@@ -105,7 +105,7 @@ export const useEditProfileCardHandlres = (params: IUseEdithProfileHandlersArgs)
     onInputCountry,
     onInputFirstname,
     onInputLastname,
-    onInputUsername,
+    onInputEmail,
     onSaveBtnClick,
     onEditBtnClick,
     onInputCurrency,

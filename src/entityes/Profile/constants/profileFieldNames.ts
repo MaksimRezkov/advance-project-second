@@ -1,6 +1,6 @@
 export interface IProfileData {
   id: number;
-  username: string;
+  email: string;
   firstname?: string;
   lastname?: string;
   age?: number;
@@ -17,7 +17,7 @@ export enum ProfileFieldNames {
   country = 'country',
   firstname = 'firstname',
   lastname = 'lastname',
-  username = 'username',
+  email = 'email',
 }
 
 export const ProfileFieldsTranslate: Record<string, string> = {
@@ -27,5 +27,5 @@ export const ProfileFieldsTranslate: Record<string, string> = {
   [ProfileFieldNames.country]: 'Страна',
   [ProfileFieldNames.firstname]: 'Имя',
   [ProfileFieldNames.lastname]: 'Фамилия',
-  [ProfileFieldNames.username]: 'Логин',
+  [ProfileFieldNames.email]: 'Логин',
 };

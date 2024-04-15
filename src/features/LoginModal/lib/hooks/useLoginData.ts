@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react';
 
-export function useLoginData () {
-  const [login, setLogin] = useState('');
+export function useEmailData () {
+  const [email, setEmail] = useState('');
 
-  const loginInputHandler = useCallback((value: string) => {
-    setLogin(value);
-  }, [setLogin]);
+  const emailInputHandler = useCallback((value: string) => {
+    setEmail(value);
+  }, [setEmail]);
 
   return {
-    login,
-    loginInputHandler,
+    email,
+    emailInputHandler,
   };
 };

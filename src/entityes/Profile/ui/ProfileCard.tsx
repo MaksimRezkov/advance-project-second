@@ -25,7 +25,7 @@ export interface IProfileCardProps {
   onInputCountry?: ProfileInputHandler;
   onInputFirstname?: ProfileInputHandler;
   onInputLastname?: ProfileInputHandler;
-  onInputUsername?: ProfileInputHandler;
+  onInputEmail?: ProfileInputHandler;
   onInputCurrency?: ProfileInputHandler;
 }
 
@@ -45,7 +45,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     onInputCountry,
     onInputFirstname,
     onInputLastname,
-    onInputUsername,
+    onInputEmail,
     onInputCurrency,
   } = props;
 
@@ -72,7 +72,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     country: onInputCountry,
     firstname: onInputFirstname,
     lastname: onInputLastname,
-    username: onInputUsername,
+    email: onInputEmail,
   }), [
     onInputAge,
     onInputAvatar,
@@ -80,7 +80,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     onInputCountry,
     onInputFirstname,
     onInputLastname,
-    onInputUsername,
+    onInputEmail,
   ]);
 
   return (

@@ -1,8 +1,15 @@
 export interface IAuthUser {
-  id: number
-  username: string
+  email: string;
+  id: number;
+  name: number;
+  role: string;
+}
+
+export interface IAuthResponseData {
+  accessToken: string;
+  user: IAuthUser;
 }
 
 export interface IAuthUserSchema {
-  authData: IAuthUser | null
+  authData: IAuthUser | null;
 }

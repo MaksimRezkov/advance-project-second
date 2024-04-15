@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useEffect, useMemo } from 'react';
 import { ApInput } from 'shared/input';
 import { getClassName } from '../../lib/utils/getClassName';
-import { useLoginData } from '../../lib/hooks/useLoginData';
+import { useEmailData } from '../../lib/hooks/useLoginData';
 import { usePasswordData } from '../../lib/hooks/usePasswordData';
 import { Button } from 'shared/Button/ui/Button';
 import { useSelector } from 'react-redux';
@@ -39,7 +39,7 @@ const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
     dispatch(loginActions.setDefaultLoginStore());
   }, []);
 
-  const { login, loginInputHandler } = useLoginData();
+  const { email, emailInputHandler } = useEmailData();
   const { password, passwordInputHandler } = usePasswordData();
 
   const errorLoginResponse = useSelector(getLoginError);
@@ -48,13 +48,13 @@ const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
     const result = await dispatch(loginAsyncThunk({
       loginData: {
         password,
-        username: login,
+        email,
       },
     }));
     if (result.meta.requestStatus === 'fulfilled') {
       onConfirm();
     }
-  }, [onConfirm, login, password]);
+  }, [onConfirm, email, password]);
 
   return (
     <div className={formClassName}>
@@ -63,7 +63,7 @@ const LoginForm: FC<LoginFormProps> = ({ onConfirm, onCancel }) => {
       </AnimationAlertWrapp>
 
       <div className={formInputsClassName}>
-        <ApInput label={login} placeholder='Логин' onInput={loginInputHandler} value={login} isFocused={true}/>
+        <ApInput label={email} placeholder='Email' onInput={emailInputHandler} value={email} isFocused={true}/>
         <ApInput label={password} placeholder='Пароль' onInput={passwordInputHandler} value={password}/>
       </div>
       <div className={formBtnsClassName}>

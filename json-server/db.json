@@ -80,8 +80,8 @@
   "users": [
     {
       "id": 1,
-      "username": "admin",
-      "password": "123",
+      "email": "admin@mail.ru",
+      "password": "123123123",
       "firstname": "Esteban",
       "lastname": "Ololoev",
       "age": 25,

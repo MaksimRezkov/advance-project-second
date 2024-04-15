@@ -59,12 +59,12 @@ const profileSlice = createSlice({
         };
       }
     },
-    setUsername: (state, action: PayloadAction<string>) => {
+    setEmail: (state, action: PayloadAction<string>) => {
       if (state.profileDataForm) {
         state.isChange = true;
         state.profileDataForm = {
           ...state.profileDataForm,
-          username: action.payload,
+          email: action.payload,
         };
       }
     },

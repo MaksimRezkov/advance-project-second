@@ -5,7 +5,7 @@ import {
   validateCountry,
   validateFirstname,
   validateLastname,
-  validateUsername,
+  validateEmail,
  } from './model/validation/validationFields';
 import { ProfileFieldNames, IProfileData } from './constants/profileFieldNames';
 export {
@@ -16,7 +16,7 @@ export {
   validateCountry,
   validateFirstname,
   validateLastname,
-  validateUsername,
+  validateEmail,
   ProfileFieldNames,
 };
 
