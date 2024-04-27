@@ -2,7 +2,11 @@ import { useCallback } from 'react';
 import { useTimerOpen } from './useTimerOpen';
 import { useDispatch } from 'react-redux';
 
-export function useCloseModal (stateActions: any, onClose?: () => void) {
+export function useCloseModal (params: {
+  toggleModalOpenReducer?: (payload: boolean) => { type: string; payload: boolean };
+  onClose?: () => void;
+}) {
+  const { toggleModalOpenReducer, onClose } = params;
   const { setModalOpenedClass, addTimer, isModalOpenedClass } = useTimerOpen();
   const dispatch = useDispatch();
 
@@ -10,9 +14,9 @@ export function useCloseModal (stateActions: any, onClose?: () => void) {
     setModalOpenedClass(false);
     addTimer(() => {
       onClose && onClose();
-      dispatch(stateActions.toggleModalOpen(false));
+      toggleModalOpenReducer && dispatch(toggleModalOpenReducer(false));
     }, 200);
-  }, [setModalOpenedClass, addTimer, dispatch, stateActions]);
+  }, [setModalOpenedClass, addTimer, dispatch, toggleModalOpenReducer]);
 
   return {
     closeModal,

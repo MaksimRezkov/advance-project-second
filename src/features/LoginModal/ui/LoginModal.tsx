@@ -40,7 +40,7 @@ export const LoginModal: FC = () => {
   }
 
   return (
-    <Modal stateActions={loginModalActions} title={modalTitle} isClosing={isClosingModal} onClose={closeModal} >
+    <Modal toggleModalOpenReducer={loginModalActions.toggleModalOpen} title={modalTitle} isClosing={isClosingModal} onClose={closeModal} >
       {resultForm}
     </Modal>
   );
