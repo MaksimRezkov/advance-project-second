@@ -1,7 +1,6 @@
 import { ICounterSchema } from './modules/counter/counterTypes';
 import { IAuthUserSchema } from './modules/authUser/authUserTypes';
-import { ILoginSchema } from './modules/login/loginTypes';
-import { IModalSchema } from './modules/modal/modalTypes';
+import { ILoginModalSchema, ILoginSchema } from './modules/login/loginTypes';
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { ThunkMiddlewareFor } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 import { IProfileSchema } from './modules/profile/profileStateTypes';
@@ -14,7 +13,7 @@ import { ICurrencySchema } from './modules/currency/currencyTypes';
 export interface IStateSchema {
   counter: ICounterSchema;
   authUser: IAuthUserSchema;
-  modal: IModalSchema;
+  loginModal: ILoginModalSchema;
 
   // Async reducers
   loginProcess?: ILoginSchema;
@@ -39,7 +38,7 @@ export interface ReduxStoreWithManager extends EnhancedStore<IStateSchema, AnyAc
 export interface IThunkConfig<T = string> {
   extra: {
     apiClient: AxiosInstance;
-    navigate?: (to: To, options?: NavigateOptions) => void
+    navigate?: (to: To, options?: NavigateOptions) => void;
   };
   state: IStateSchema;
   rejectValue: T;

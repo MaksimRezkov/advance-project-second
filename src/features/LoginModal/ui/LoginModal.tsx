@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { getLoginLoading } from '../model/selectors/getLoginLoading/getLoginLoading';
 import { LogoutForm } from './LogoutForm/LogoutForm';
 import { getAuthUserId } from 'entityes/AuthUser';
+import { loginModalActions } from '../model/slice/loginModalSlice';
 
 export const LoginModal: FC = () => {
   /** local state */
@@ -39,7 +40,7 @@ export const LoginModal: FC = () => {
   }
 
   return (
-    <Modal title={modalTitle} isClosing={isClosingModal} onClose={closeModal}>
+    <Modal stateActions={loginModalActions} title={modalTitle} isClosing={isClosingModal} onClose={closeModal} >
       {resultForm}
     </Modal>
   );

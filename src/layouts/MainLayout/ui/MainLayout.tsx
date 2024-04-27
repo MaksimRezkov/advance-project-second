@@ -2,17 +2,15 @@ import { FC, memo } from 'react';
 import { Header } from 'widgets/Header/ui/Header';
 import { Sidebar } from 'widgets/Sidebar';
 import './MainLayout.scss';
-// import { useModalOpenContext } from 'app/lib/context/useModalOpenContext';
 import { Portal } from 'shared/Portal/ui/Portal';
 import { LoginModal } from 'features/LoginModal';
 import { useSelector } from 'react-redux';
-import { getModalOpenFlag } from 'shared/Modal/model/selectors/getModalOpenFlag';
+import { getOpenLoginModal } from 'features/LoginModal/model/selectors/getOpenLoginModal/getOpenLoginModal';
 
 const SidebarMemo = memo(Sidebar);
 
 export const MainLayout: FC = ({ children }) => {
-  // const { isModalOpen } = useModalOpenContext();
-  const isModalOpen = useSelector(getModalOpenFlag);
+  const isLoginModalOpen = useSelector(getOpenLoginModal);
 
   return (
     <div className="app-layout">
@@ -23,7 +21,7 @@ export const MainLayout: FC = ({ children }) => {
       </div>
 
       {
-        isModalOpen &&
+        isLoginModalOpen &&
         <Portal>
           <LoginModal/>
         </Portal>

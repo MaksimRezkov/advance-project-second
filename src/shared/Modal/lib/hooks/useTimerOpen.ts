@@ -3,9 +3,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 type TimerId = ReturnType<typeof setTimeout>;
 
 export interface IUseTimerOpen {
-  isModalOpenedClass: boolean
-  setModalOpenedClass: React.Dispatch<React.SetStateAction<boolean>>
-  addTimer: ReturnType<typeof useCallback>
+  isModalOpenedClass: boolean;
+  setModalOpenedClass: React.Dispatch<React.SetStateAction<boolean>>;
+  addTimer: ReturnType<typeof useCallback>;
 }
 
 export const useTimerOpen: () => IUseTimerOpen = () => {

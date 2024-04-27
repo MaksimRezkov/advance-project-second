@@ -4,16 +4,16 @@ import { NavigateOptions, To } from 'react-router-dom';
 import { IStateSchema, ReduxStoreWithManager } from '../types/StateSchema';
 import { counterReducer } from 'entityes/Counter';
 import { authUserReducer } from 'entityes/AuthUser';
-import { modalReducer } from 'shared/Modal';
 import { createReducerManager } from './reducerManager';
 import { apiClient } from 'shared/api/apiClient';
 import { profileReducer } from 'entityes/Profile';
+import { loginModalReducer } from 'features/LoginModal/model/slice/loginModalSlice';
 
 export function CreatorReduxStore (initialState?: IStateSchema, navigate?: (to: To, options?: NavigateOptions) => void): ReduxStoreWithManager {
   const rootReducer: ReducersMapObject<IStateSchema> = {
     counter: counterReducer,
     authUser: authUserReducer,
-    modal: modalReducer,
+    loginModal: loginModalReducer,
   };
 
   if (_PROJECT_ !== 'frontend') {

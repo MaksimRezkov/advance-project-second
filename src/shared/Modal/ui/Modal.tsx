@@ -7,6 +7,7 @@ import { useKeydownHandlers } from '../lib/hooks/useKeydownHandlers';
 import { useCloseModal } from '../lib/hooks/useCloseModal';
 
 export interface IModalProps {
+  stateActions: any;
   title?: string;
   /** Флаг для закрытия модалки с анимацией */
   isClosing?: boolean;
@@ -15,9 +16,9 @@ export interface IModalProps {
 
 const ButtonMemo = memo(Button);
 
-export const Modal: FC<IModalProps> = ({ children, title, isClosing, onClose }) => {
+export const Modal: FC<IModalProps> = ({ stateActions, children, title, isClosing, onClose }) => {
   const CloseBtnIconMemo = useMemo(() => CloseBtnIcon, []);
-  const { closeModal, isModalOpenedClass } = useCloseModal(onClose);
+  const { closeModal, isModalOpenedClass } = useCloseModal(stateActions, onClose);
   useKeydownHandlers(closeModal);
 
   useEffect(() => {
