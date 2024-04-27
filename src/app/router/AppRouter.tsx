@@ -1,15 +1,10 @@
-import { FC, Suspense, useMemo } from 'react';
+import { FC, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { RouteConfig } from './RouterConfig';
 import { PageLoader } from 'widgets/PageLoader/ui/PageLoader';
-import { useAppSelector } from 'store/lib/hooks/useAppSelector';
-import { getAuthUserId } from 'entityes/AuthUser';
+import { useRouteLinksList } from 'app/lib/hooks/useRouteLinksList';
 
 export const AppRouter: FC = () => {
-  const authUserId = useAppSelector(getAuthUserId);
-  const filteredLinks = useMemo(() => {
-    return RouteConfig.filter(route => authUserId || !route.authOnly);
-  }, [authUserId, RouteConfig]);
+  const filteredLinks = useRouteLinksList();
 
   return (
     <>
