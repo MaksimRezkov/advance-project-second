@@ -9,10 +9,12 @@ import { getLoginLoading } from '../model/selectors/getLoginLoading/getLoginLoad
 import { LogoutForm } from './LogoutForm/LogoutForm';
 import { getAuthUserId } from 'entityes/AuthUser';
 import { loginModalActions } from '../model/slice/loginModalSlice';
+import { useAppDispatch } from 'store/lib/hooks/useAppDispatch';
 
 export const LoginModal: FC = () => {
   /** local state */
   const [isClosingModal, setClosingModal] = useState(false);
+  const dispatch = useAppDispatch();
 
   /** global state */
   const isLoading = useSelector(getLoginLoading);
@@ -21,6 +23,10 @@ export const LoginModal: FC = () => {
   const closeModal = useCallback(() => {
     setClosingModal(true);
   }, [setClosingModal]);
+
+  const closeModalHandler = () => {
+    dispatch(loginModalActions.toggleModalOpen(false));
+  };
 
   const modalTitle = authUserId ? 'Вы действительно хотите выйти?' : 'Введите логин и пароль';
 
@@ -40,7 +46,7 @@ export const LoginModal: FC = () => {
   }
 
   return (
-    <Modal toggleModalOpenReducer={loginModalActions.toggleModalOpen} title={modalTitle} isClosing={isClosingModal} onClose={closeModal} >
+    <Modal title={modalTitle} isClosing={isClosingModal} onClose={closeModalHandler} >
       {resultForm}
     </Modal>
   );
