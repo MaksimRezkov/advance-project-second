@@ -8,12 +8,14 @@ import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { ICountrySchema } from './modules/countries/countryTypes';
 import { ICurrencySchema } from './modules/currency/currencyTypes';
+import { ICoverLoaderStateSchema } from './modules/coverLoader/coverLoaderTypes';
 
 /** Описание глобального хранилища */
 export interface IStateSchema {
   counter: ICounterSchema;
   authUser: IAuthUserSchema;
   loginModal: ILoginModalSchema;
+  coverLoader: ICoverLoaderStateSchema;
 
   // Async reducers
   loginProcess?: ILoginSchema;

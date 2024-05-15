@@ -8,12 +8,14 @@ import { createReducerManager } from './reducerManager';
 import { apiClient } from 'shared/api/apiClient';
 import { profileReducer } from 'entityes/Profile';
 import { loginModalReducer } from 'features/LoginModal/model/slice/loginModalSlice';
+import { coverLoaderReducer } from 'widgets/CoverLoader';
 
 export function CreatorReduxStore (initialState?: IStateSchema, navigate?: (to: To, options?: NavigateOptions) => void): ReduxStoreWithManager {
   const rootReducer: ReducersMapObject<IStateSchema> = {
     counter: counterReducer,
     authUser: authUserReducer,
     loginModal: loginModalReducer,
+    coverLoader: coverLoaderReducer,
   };
 
   if (_PROJECT_ !== 'frontend') {

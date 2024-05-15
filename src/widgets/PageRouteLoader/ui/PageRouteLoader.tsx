@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import styleClasses from './PageLoader.module.scss';
+import styleClasses from './PageRouteLoader.module.scss';
 import { classNames } from 'shared/utils/classNames';
 import { LoaderSpinner } from 'shared/LoaderSpinner';
 
-export const PageLoader: FC = () => {
+export const PageRouteLoader: FC = () => {
   const className = classNames({
     mainClassName: styleClasses.pageLoader,
     additional: ['flex-all-center'],

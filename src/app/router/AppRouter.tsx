@@ -1,6 +1,6 @@
 import { FC, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { PageLoader } from 'widgets/PageLoader/ui/PageLoader';
+import { PageRouteLoader } from 'widgets/PageRouteLoader/ui/PageRouteLoader';
 import { useRouteLinksList } from 'app/lib/hooks/useRouteLinksList';
 
 export const AppRouter: FC = () => {
@@ -8,7 +8,7 @@ export const AppRouter: FC = () => {
 
   return (
     <>
-      <Suspense fallback={<PageLoader/>}>
+      <Suspense fallback={<PageRouteLoader/>}>
         <Routes>
           {
             filteredLinks.map(route => <Route path={route.path} element={route.element} key={route.path}/>)
