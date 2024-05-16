@@ -3,6 +3,7 @@ import { HomeLazy } from 'pages/Home';
 import { AboutLazy } from 'pages/About';
 import { NotFound } from 'pages/NotFound';
 import { ProfilePage } from 'pages/ProfilePage';
+import { RequireAuth } from './RequireAuth';
 
 export enum RouteNames {
   MAIN = 'main',
@@ -27,9 +28,9 @@ export const RoutePaths: Record<RouteNames, string> = {
 };
 
 export interface IAppPathRouteProps extends PathRouteProps {
- title?: string
- authOnly?: boolean
- hiddenLink?: boolean
+ title?: string;
+ authOnly?: boolean;
+ hiddenLink?: boolean;
 }
 
 export const RouteConfig: IAppPathRouteProps[] = [
@@ -45,7 +46,7 @@ export const RouteConfig: IAppPathRouteProps[] = [
   },
   {
     path: RoutePaths[RouteNames.PROFILE],
-    element: <ProfilePage/>,
+    element: <RequireAuth><ProfilePage/></RequireAuth>,
     title: RouteTitles[RouteNames.PROFILE],
     authOnly: true,
   },

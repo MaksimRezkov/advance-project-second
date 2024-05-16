@@ -7,8 +7,8 @@ import { USER_TOKEN_KEY } from 'shared/const/LocalStorage';
 import { IThunkConfig } from 'store';
 
 export interface ILoginThunkParams {
-  loginData: ILoginData
-  onSuccessFn?: () => void
+  loginData: ILoginData;
+  onSuccessFn?: () => void;
 }
 
 export const loginAsyncThunk = createAsyncThunk<

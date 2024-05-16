@@ -14,7 +14,7 @@
     "lint-fix": "eslint --fix --ext .js,.ts,.tsx .",
     "storybook-start": "storybook dev -p 6006 -c ./config/storybook",
     "build-storybook": "storybook build -c ./config/storybook",
-    "start-dev": "concurrently \"npm run dev-front-start\" \"npm run dev-api-start\""
+    "dev-start": "concurrently \"npm run dev-front-start\" \"npm run dev-api-start\""
   },
   "keywords": [],
   "author": "",

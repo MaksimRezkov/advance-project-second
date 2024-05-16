@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { IClassNamesParams, classNames } from 'shared/utils/classNames';
 import { useThemeContext } from './lib/context/useThemeContext';
 import './styles/index.scss';
-import { useCheckAuthUser } from 'features/LoginModal/lib/hooks/useCheckAuthUser';
+import { useCheckAuthUserLocalStorage } from 'entityes/AuthUser';
 
 export const App: FC = ({ children }) => {
   const { themeValue } = useThemeContext();
@@ -10,7 +10,7 @@ export const App: FC = ({ children }) => {
     mainClassName: 'app',
     additional: [themeValue || ''],
   };
-  useCheckAuthUser();
+  useCheckAuthUserLocalStorage();
 
   return (
     <div className={classNames(appClassNames)}>
